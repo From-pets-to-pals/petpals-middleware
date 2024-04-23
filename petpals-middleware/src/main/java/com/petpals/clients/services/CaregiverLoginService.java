@@ -1,5 +1,6 @@
-package com.petpals;
+package com.petpals.clients.services;
 
+import com.petpals.bootstrap.headersfactory.CaregiversClientConfigurationFactory;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import org.eclipse.microprofile.rest.client.annotation.RegisterClientHeaders;
@@ -21,13 +22,18 @@ import java.util.List;
  * }
  */
 @RegisterRestClient(baseUri = "https://petpals-caregivers.azurewebsites.net/")
-public interface MyRemoteService {
+@RegisterClientHeaders(CaregiversClientConfigurationFactory.class)
+@Path("/hello")
+public interface CaregiverLoginService {
 	
 	@GET
-	@Path("/hello")
-	@Consumes(MediaType.TEXT_PLAIN)
 	@Produces(MediaType.TEXT_PLAIN)
-	String login();
+	String hello();
+	
+	@GET
+	@Path("/{name}")
+	@Produces(MediaType.TEXT_PLAIN)
+	String helloYou(@PathParam("name") String name);
 	
 	class Extension {
 		public String id;

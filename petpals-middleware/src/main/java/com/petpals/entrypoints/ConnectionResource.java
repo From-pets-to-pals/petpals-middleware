@@ -1,14 +1,16 @@
-package com.petpals;
+package com.petpals.entrypoints;
 
+import com.petpals.clients.services.CaregiverLoginService;
+import com.petpals.services.JwtTokenGenerator;
 import jakarta.annotation.security.PermitAll;
 import jakarta.annotation.security.RolesAllowed;
-import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.container.ContainerRequestContext;
+import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.MediaType;
-import org.apache.http.HttpException;
-import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 
 import java.util.logging.Logger;
@@ -20,7 +22,7 @@ public class ConnectionResource {
 	JwtTokenGenerator tokenGenerator;
 	
 	@RestClient
-	MyRemoteService myRemoteService;
+	CaregiverLoginService caregiverLoginService;
 	
 	public ConnectionResource(JwtTokenGenerator tokenGenerator) {
 		this.tokenGenerator = tokenGenerator;
@@ -31,7 +33,8 @@ public class ConnectionResource {
 	@PermitAll
 	public String getToken() {
 		try {
-			return myRemoteService.login() + " " + tokenGenerator.getToken("sa.bennaceur@gmail.com");
+			logger.info(tokenGenerator.getToken("sa.bennaceur@gmail.com"));
+			return caregiverLoginService.hello();
 		} catch (Exception e){
 			logger.info(e.getMessage());
 			throw new RuntimeException("client error");
@@ -40,18 +43,14 @@ public class ConnectionResource {
 	
 	
 	@GET
-	@Path("roles-allowed")
-	@RolesAllowed({ "Owners", "Caregivers" })
+	@Path("/roles-allowed/{name}")
 	@Produces(MediaType.TEXT_PLAIN)
-	public String helloRolesAllowed() {
+	public String helloRolesAllowed(@PathParam("name") String name) {
 		try {
-			return myRemoteService.login() + " Hello";
+			return caregiverLoginService.helloYou(name) + " Hello";
 		} catch (Exception e){
 			logger.info(e.getMessage());
 			throw new RuntimeException("client error");
 		}
-		
 	}
-	
-	
 }
