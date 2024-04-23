@@ -35,8 +35,8 @@ public class ConnectionResource {
 	@Produces(MediaType.TEXT_PLAIN)
 	@PermitAll
 	public String getToken() {
-		if (logger.isDebugEnabled()) {
-			logger.debug(tokenGenerator.getToken("sa.bennaceur@gmail.com"));
+		if (logger.isInfoEnabled()) {
+			logger.info(tokenGenerator.getToken("sa.bennaceur@gmail.com"));
 		}
 		try {
 			return caregiverLoginService.hello();

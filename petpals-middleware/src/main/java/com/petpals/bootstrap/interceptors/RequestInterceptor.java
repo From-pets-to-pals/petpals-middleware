@@ -2,40 +2,44 @@ package com.petpals.bootstrap.interceptors;
 
 import com.petpals.shared.errorhandling.ApplicationExceptions;
 import com.petpals.shared.errorhandling.ExceptionsEnum;
-import io.vertx.core.http.HttpServerRequest;
-import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.container.ContainerRequestContext;
 import jakarta.ws.rs.container.ContainerRequestFilter;
 import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.UriInfo;
+import jakarta.ws.rs.ext.Provider;
 import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.jboss.logging.Logger;
 
+import java.util.List;
 
-@RequestScoped
+
+@Provider
 public class RequestInterceptor implements ContainerRequestFilter  {
-	private final Logger logger = Logger.getLogger(this.getClass().getName());
+	public static final Logger log = Logger.getLogger(RequestInterceptor.class.getName());
 	
 	JsonWebToken jwt;
 	@Context
 	UriInfo info;
 	
-	@Context
-	HttpServerRequest request;
 	
-	private final String authorizedPath = "/login";
-	
+	@Inject
 	public RequestInterceptor(JsonWebToken jwt) {
 		this.jwt = jwt;
 	}
 	
 	@Override
 	public void filter(ContainerRequestContext containerRequestContext) {
-		if(hasJwt()){
-			logger.info(jwt.getName());
+		log.info(String.format("Filtering incoming request with uri: %s", info.getPath()));
+	 	final List<String> authorizedPath = List.of("/login","/caregivers");
+		if(containerRequestContext.getHeaderString("API-KEY") != null && !containerRequestContext.getHeaderString(
+				"API-KEY").equals("pals")) {
+			throw new ApplicationExceptions(ExceptionsEnum.CAREGIVER_MIDDLEWARE_MISSING_API_KEY);
 		}
-		if (!info.getPath().equals(authorizedPath) && !hasJwt()) {
+		if(hasJwt()){
+			log.info(jwt.getName());
+		}
+		if (!authorizedPath.contains(info.getPath()) && !hasJwt()) {
 			throw new ApplicationExceptions(ExceptionsEnum.NO_JWT_TOKEN);
 		}
 	}
