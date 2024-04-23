@@ -19,7 +19,7 @@ public class MyCredentialProvider {
 	@ConfigProperty(name = "azure.tenantid")
 	String tenantId;
 	
-	@ConfigProperty(name = "azure.tenant")
+	@ConfigProperty(name = "azure.tenant.token")
 	String secret;
 	
 	@ConfigProperty(name = "azure.clientid")
