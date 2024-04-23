@@ -2,6 +2,8 @@ package com.petpals.entrypoints;
 
 import com.petpals.clients.services.CaregiverLoginService;
 import com.petpals.services.JwtTokenGenerator;
+import com.petpals.shared.errorhandling.ApplicationExceptions;
+import com.petpals.shared.errorhandling.ExceptionsEnum;
 import jakarta.annotation.security.PermitAll;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.ws.rs.GET;
@@ -12,8 +14,9 @@ import jakarta.ws.rs.container.ContainerRequestContext;
 import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.MediaType;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
+import org.jboss.logging.Logger;
+import org.jboss.resteasy.client.exception.ResteasyClientErrorException;
 
-import java.util.logging.Logger;
 
 @Path("/login")
 public class ConnectionResource {
@@ -32,25 +35,28 @@ public class ConnectionResource {
 	@Produces(MediaType.TEXT_PLAIN)
 	@PermitAll
 	public String getToken() {
+		if (logger.isDebugEnabled()) {
+			logger.debug(tokenGenerator.getToken("sa.bennaceur@gmail.com"));
+		}
 		try {
-			logger.info(tokenGenerator.getToken("sa.bennaceur@gmail.com"));
 			return caregiverLoginService.hello();
-		} catch (Exception e){
+		} catch (ResteasyClientErrorException e) {
 			logger.info(e.getMessage());
-			throw new RuntimeException("client error");
+			throw new ApplicationExceptions(ExceptionsEnum.CAREGIVER_API_HELLO_ERROR);
 		}
 	}
 	
 	
 	@GET
-	@Path("/roles-allowed/{name}")
+	@Path("/hello/{name}")
+	@RolesAllowed({"Caregivers", "Owners"})
 	@Produces(MediaType.TEXT_PLAIN)
 	public String helloRolesAllowed(@PathParam("name") String name) {
 		try {
 			return caregiverLoginService.helloYou(name) + " Hello";
-		} catch (Exception e){
+		} catch (ResteasyClientErrorException e) {
 			logger.info(e.getMessage());
-			throw new RuntimeException("client error");
+			throw new ApplicationExceptions(ExceptionsEnum.CAREGIVER_API_HELLO_ERROR);
 		}
 	}
 }

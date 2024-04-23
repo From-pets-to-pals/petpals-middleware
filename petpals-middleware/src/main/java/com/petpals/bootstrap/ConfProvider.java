@@ -1,21 +1,18 @@
 package com.petpals.bootstrap;
 
-import io.quarkus.runtime.StartupEvent;
-import jakarta.enterprise.event.Observes;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.logging.Logger;
-
 import com.azure.identity.ClientSecretCredentialBuilder;
 import com.azure.security.keyvault.secrets.SecretClient;
 import com.azure.security.keyvault.secrets.SecretClientBuilder;
+import io.quarkus.runtime.StartupEvent;
+import jakarta.enterprise.event.Observes;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 
-public class MyCredentialProvider {
-	
-	
+import java.util.HashMap;
+import java.util.Map;
+
+public class ConfProvider {
 	private static final Map<String, String> configuration = new HashMap<>();
+	
 	@ConfigProperty(name = "azure.tenantid")
 	String tenantId;
 	
@@ -25,12 +22,12 @@ public class MyCredentialProvider {
 	@ConfigProperty(name = "azure.clientid")
 	String clientId;
 	
+	@ConfigProperty(name = "azure.vault.url")
+	String vaultUrl;
+	
 	void onStart(@Observes StartupEvent ev) {
-		
-		final String KEY_VAULT_URI = "https://petpals-key-vault.vault.azure.net";
-		Logger.getAnonymousLogger().info(clientId + ": " + tenantId + ": " + secret);
 		SecretClient secretClient = new SecretClientBuilder()
-											.vaultUrl(KEY_VAULT_URI)
+											.vaultUrl(vaultUrl)
 											.credential(new ClientSecretCredentialBuilder()
 																.tenantId(tenantId)
 																.clientSecret(secret)

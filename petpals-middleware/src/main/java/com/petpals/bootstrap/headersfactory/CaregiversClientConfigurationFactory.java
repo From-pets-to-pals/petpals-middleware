@@ -1,6 +1,6 @@
 package com.petpals.bootstrap.headersfactory;
 
-import com.petpals.bootstrap.MyCredentialProvider;
+import com.petpals.bootstrap.ConfProvider;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.ws.rs.core.HttpHeaders;
 import jakarta.ws.rs.core.MultivaluedHashMap;
@@ -12,7 +12,7 @@ public class CaregiversClientConfigurationFactory implements ClientHeadersFactor
 	
 	@Override
 	public MultivaluedMap<String, String> update(MultivaluedMap<String, String> incomingHeaders, MultivaluedMap<String, String> clientOutgoingHeaders) {
-		var apiKey = MyCredentialProvider.getValue("caregivers.api.key");
+		var apiKey = ConfProvider.getValue("caregivers.api.key");
 		MultivaluedMap<String, String> result = new MultivaluedHashMap<>();
 		if (incomingHeaders.get(HttpHeaders.AUTHORIZATION) != null) {
 			result.add(HttpHeaders.AUTHORIZATION, incomingHeaders.get(HttpHeaders.AUTHORIZATION).get(0));

@@ -23,7 +23,7 @@ public class JwtTokenGenerator {
 				Jwt.issuer(issuer)
 						.upn(email)
 						.groups(new HashSet<>(Arrays.asList("Owners", "Caregivers")))
-						.expiresAt(Instant.now().plus(10, ChronoUnit.MINUTES))
+						.expiresAt(Instant.now().plus(14, ChronoUnit.DAYS))
 						.claim(Claims.address.name(), origin)
 						.sign();
 	}
