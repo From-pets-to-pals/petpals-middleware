@@ -1,12 +1,11 @@
-package com.petpals.clients.services;
+package com.petpals.clients.endpoints;
 
-import com.petpals.bootstrap.headersfactory.CaregiversClientConfigurationFactory;
+import com.petpals.bootstrap.factories.CaregiversClientConfigurationFactory;
+import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import org.eclipse.microprofile.rest.client.annotation.RegisterClientHeaders;
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
-
-import java.util.List;
 
 /**
  * To use it via injection.
@@ -23,8 +22,9 @@ import java.util.List;
  */
 @RegisterRestClient(baseUri = "https://petpals-caregivers.azurewebsites.net/")
 @RegisterClientHeaders(CaregiversClientConfigurationFactory.class)
+@ApplicationScoped
 @Path("/hello")
-public interface CaregiverLoginService {
+public interface CaregiversHealthCheckClient {
 	
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
@@ -34,11 +34,4 @@ public interface CaregiverLoginService {
 	@Path("/{name}")
 	@Produces(MediaType.TEXT_PLAIN)
 	String helloYou(@PathParam("name") String name);
-	
-	class Extension {
-		public String id;
-		public String name;
-		public String shortName;
-		public List<String> keywords;
-	}
 }

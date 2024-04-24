@@ -4,8 +4,8 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.petpals</groupId>
     <artifactId>petpals-middleware</artifactId>
-    <version>1.0-SNAPSHOT</version>
-
+    <version>0.1.0-SNAPSHOT</version>
+    <name>petpals-middleware</name>
     <properties>
         <compiler-plugin.version>3.12.1</compiler-plugin.version>
         <maven.compiler.release>17</maven.compiler.release>
@@ -17,7 +17,6 @@
         <skipITs>true</skipITs>
         <surefire-plugin.version>3.2.5</surefire-plugin.version>
     </properties>
-
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -29,9 +28,7 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
     <dependencies>
-
         <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-resteasy-client</artifactId>
@@ -39,6 +36,12 @@
         <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-resteasy</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.petpals</groupId>
+            <artifactId>petpals-common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <type>jar</type>
         </dependency>
         <dependency>
             <groupId>io.quarkus</groupId>
@@ -75,6 +78,11 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-jacoco</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>com.azure</groupId>
             <artifactId>azure-security-keyvault-secrets</artifactId>
             <version>4.8.1</version>
@@ -84,9 +92,16 @@
             <artifactId>azure-identity</artifactId>
             <version>1.12.0</version>
         </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-junit5-mockito</artifactId>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
     <build>
+        <finalName>${name}</finalName>
         <plugins>
             <plugin>
                 <groupId>${quarkus.platform.group-id}</groupId>
@@ -100,6 +115,24 @@
                             <goal>generate-code</goal>
                             <goal>generate-code-tests</goal>
                         </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.12</version>
+                <executions>
+                    <execution>
+                        <id>default-prepare-agent</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                        <configuration>
+                            <exclClassLoaders>*QuarkusClassLoader</exclClassLoaders>
+                            <destFile>${project.build.directory}/jacoco-quarkus.exec</destFile>
+                            <append>true</append>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
@@ -118,7 +151,7 @@
                 <configuration>
                     <systemPropertyVariables>
                         <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
-                        <maven.home>${maven.home}</maven.home>
+                        <maven.home>3.9.6</maven.home>
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
@@ -138,7 +171,7 @@
                         <native.image.path>${project.build.directory}/${project.build.finalName}-runner
                         </native.image.path>
                         <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
-                        <maven.home>${maven.home}</maven.home>
+                        <maven.home>3.9.6</maven.home>
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
