@@ -1,4 +1,4 @@
-package com.petpals.bootstrap.interceptors;
+package com.petpals.bootstrap.factories;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;

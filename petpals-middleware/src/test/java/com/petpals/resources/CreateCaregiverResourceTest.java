@@ -1,36 +1,29 @@
-package com.petpals;
+package com.petpals.resources;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.petpals.clients.dto.CreateCaregiver;
 import com.petpals.clients.dto.Days;
-import com.petpals.clients.services.CaregiverLoginService;
+import com.petpals.domain.ports.in.SaveCaregiversIn;
 import com.petpals.shared.enums.CaregiverTypes;
 import com.petpals.shared.enums.Species;
 import io.quarkus.test.InjectMock;
 import io.quarkus.test.junit.QuarkusTest;
-import org.eclipse.microprofile.rest.client.inject.RestClient;
+import org.jboss.resteasy.client.exception.ResteasyClientErrorException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.CoreMatchers.is;
-import static org.mockito.Mockito.when;
 
 @QuarkusTest
-class ConnectionResourceTest {
-	
+class CreateCaregiverResourceTest {
+	@InjectMock
+	SaveCaregiversIn saveCaregiversIn;
+	static CreateCaregiver createCaregiver;
 	@BeforeEach
-	public void setUp() {
-		//when(mock.hello()).thenReturn("Hello RESTEasy");
-	}
-	
-	
-	
-	
-	@Test
-	void testCreateCaregiverBadRequest() throws JsonProcessingException {
-		var createCaregiver = new CreateCaregiver(
+	void setUp(){
+		createCaregiver = new CreateCaregiver(
 				"Sid",
 				"Bennaceur",
 				null,
@@ -48,6 +41,12 @@ class ConnectionResourceTest {
 				0.0,
 				0.0
 		);
+		Mockito.when(saveCaregiversIn.createCaregiver(Mockito.any(CreateCaregiver.class))).thenThrow(ResteasyClientErrorException.class);
+	}
+	
+	@Test
+	void testCreateCaregiverBadRequest() throws JsonProcessingException {
+		
 		ObjectMapper mapper = new ObjectMapper();
 		var json = mapper.writeValueAsString(createCaregiver);
 		given()

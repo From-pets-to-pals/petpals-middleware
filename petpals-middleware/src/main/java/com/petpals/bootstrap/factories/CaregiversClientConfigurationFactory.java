@@ -1,4 +1,4 @@
-package com.petpals.bootstrap.headersfactory;
+package com.petpals.bootstrap.factories;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.ws.rs.core.HttpHeaders;
