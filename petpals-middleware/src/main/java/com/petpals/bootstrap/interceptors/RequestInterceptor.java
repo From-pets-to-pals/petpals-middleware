@@ -34,12 +34,21 @@ public class RequestInterceptor implements ContainerRequestFilter  {
 	 	final List<String> authorizedPath = List.of("/login","/caregivers");
 		if(containerRequestContext.getHeaderString("API-KEY") != null && !containerRequestContext.getHeaderString(
 				"API-KEY").equals("pals")) {
+			System.out.println("their");
+			
 			throw new ApplicationExceptions(ExceptionsEnum.CAREGIVER_MIDDLEWARE_MISSING_API_KEY);
 		}
+		if(containerRequestContext.getHeaderString("API-KEY") == null && hasJwt()) {
+			
+			throw new ApplicationExceptions(ExceptionsEnum.CAREGIVER_MIDDLEWARE_MISSING_API_KEY);
+		}
+		System.out.println("there");
+		
 		if(hasJwt()){
 			log.info(jwt.getName());
 		}
 		if (!authorizedPath.contains(info.getPath()) && !hasJwt()) {
+			System.out.println("here");
 			throw new ApplicationExceptions(ExceptionsEnum.NO_JWT_TOKEN);
 		}
 	}

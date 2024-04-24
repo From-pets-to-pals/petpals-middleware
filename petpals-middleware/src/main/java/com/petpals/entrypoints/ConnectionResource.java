@@ -6,6 +6,7 @@ import com.petpals.shared.errorhandling.ApplicationExceptions;
 import com.petpals.shared.errorhandling.ExceptionsEnum;
 import jakarta.annotation.security.PermitAll;
 import jakarta.annotation.security.RolesAllowed;
+import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
@@ -24,6 +25,7 @@ public class ConnectionResource {
 	private final Logger logger = Logger.getLogger(ConnectionResource.class.getName());
 	JwtTokenGenerator tokenGenerator;
 	
+	@Inject
 	@RestClient
 	CaregiverLoginService caregiverLoginService;
 	
@@ -39,7 +41,9 @@ public class ConnectionResource {
 			logger.info(tokenGenerator.getToken("sa.bennaceur@gmail.com"));
 		}
 		try {
-			return caregiverLoginService.hello();
+			var res = caregiverLoginService.hello();
+			logger.info(res);
+			return res;
 		} catch (ResteasyClientErrorException e) {
 			logger.info(e.getMessage());
 			throw new ApplicationExceptions(ExceptionsEnum.CAREGIVER_API_HELLO_ERROR);
@@ -53,7 +57,9 @@ public class ConnectionResource {
 	@Produces(MediaType.TEXT_PLAIN)
 	public String helloRolesAllowed(@PathParam("name") String name) {
 		try {
-			return caregiverLoginService.helloYou(name) + " Hello";
+			var res = caregiverLoginService.helloYou(name);
+			logger.info(res);
+			return res;
 		} catch (ResteasyClientErrorException e) {
 			logger.info(e.getMessage());
 			throw new ApplicationExceptions(ExceptionsEnum.CAREGIVER_API_HELLO_ERROR);

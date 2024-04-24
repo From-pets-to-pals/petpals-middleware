@@ -12,9 +12,8 @@ import org.eclipse.microprofile.config.spi.ConfigSource;
 import io.smallrye.config.ConfigSourceContext;
 import io.smallrye.config.ConfigValue;
 import io.smallrye.config.PropertiesConfigSource;
-import org.jboss.logging.Logger;
 
-public class ConfigSourceFactory implements io.smallrye.config.ConfigSourceFactory {
+public class AzureConfigSourceFactory implements io.smallrye.config.ConfigSourceFactory {
 	private final String CLAIMS = "claims.origin";
 	private final String ISSUER = "mp.jwt.verify.issuer";
 	
@@ -43,7 +42,7 @@ public class ConfigSourceFactory implements io.smallrye.config.ConfigSourceFacto
 			conf.put(ISSUER,secretClient.getSecret("TOKEN-ISSUER").getValue());
 			return Collections.singletonList(new PropertiesConfigSource(conf,null, getPriority().getAsInt()));
 		}
-		conf.put(CLAIMS,caregiversApiKey.getValue());
+		conf.put(CAREGIVERS_API_KEY,caregiversApiKey.getValue());
 		
 		return Collections.singletonList(new PropertiesConfigSource(conf,caregiversApiKey.getSourceName(), getPriority().getAsInt()));
 	}

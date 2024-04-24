@@ -1,6 +1,7 @@
 package com.petpals.clients.services;
 
 import com.petpals.bootstrap.headersfactory.CaregiversClientConfigurationFactory;
+import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import org.eclipse.microprofile.rest.client.annotation.RegisterClientHeaders;
@@ -23,6 +24,7 @@ import java.util.List;
  */
 @RegisterRestClient(baseUri = "https://petpals-caregivers.azurewebsites.net/")
 @RegisterClientHeaders(CaregiversClientConfigurationFactory.class)
+@ApplicationScoped
 @Path("/hello")
 public interface CaregiverLoginService {
 	
