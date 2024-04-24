@@ -9,6 +9,7 @@ import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 import org.jboss.logging.Logger;
 
@@ -20,12 +21,16 @@ public class CreateCaregiverResource {
 	@RestClient
 	SaveCaregiverService saveCaregiverService;
 	
+	@ConfigProperty(name = "caregivers.api.key")
+	public String myProps;
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	public String createCaregiver(CreateCaregiver createCaregiver){
 		if(logger.isInfoEnabled()){
 			logger.info("Call create caregiver");
+			logger.info(myProps);
+			
 			logger.info(String.format("Create caregiver call with : %s" ,createCaregiver.toString()));
 		}
 		try {
