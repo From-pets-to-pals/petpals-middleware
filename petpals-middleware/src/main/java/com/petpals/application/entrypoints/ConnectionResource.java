@@ -32,7 +32,6 @@ public class ConnectionResource {
 	
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
-	@PermitAll
 	public String getHello() {
 		try {
 			return caregiversHealthCheckIn.hello();
@@ -45,7 +44,6 @@ public class ConnectionResource {
 	
 	@GET
 	@Path("/{name}")
-	@RolesAllowed({"Caregivers"})
 	@Produces(MediaType.TEXT_PLAIN)
 	public String helloRolesAllowed(@PathParam("name") String name) {
 		try {

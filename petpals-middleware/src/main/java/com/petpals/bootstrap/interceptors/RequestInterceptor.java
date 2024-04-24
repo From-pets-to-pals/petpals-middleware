@@ -31,7 +31,10 @@ public class RequestInterceptor implements ContainerRequestFilter  {
 	@Override
 	public void filter(ContainerRequestContext containerRequestContext) {
 		log.info(String.format("Filtering incoming request with uri: %s", info.getPath()));
-	 	final List<String> authorizedPath = List.of("/hello","/caregivers","/token");
+	 	final List<String> authorizedPath = List.of("/hello", "/token");
+		 if(authorizedPath.stream().filter(path -> info.getPath().startsWith(path)).findFirst().isPresent()){
+			 return;
+		 }
 		if(containerRequestContext.getHeaderString("API-KEY") != null && !containerRequestContext.getHeaderString(
 				"API-KEY").equals("pals")) {
 			throw new ApplicationExceptions(ExceptionsEnum.CAREGIVER_MIDDLEWARE_MISSING_API_KEY);
@@ -40,7 +43,7 @@ public class RequestInterceptor implements ContainerRequestFilter  {
 			
 			throw new ApplicationExceptions(ExceptionsEnum.CAREGIVER_MIDDLEWARE_MISSING_API_KEY);
 		}
-		if (!authorizedPath.contains("/"+ info.getPathSegments().get(0)) && !hasJwt()) {
+		if (!hasJwt()) {
 			throw new ApplicationExceptions(ExceptionsEnum.NO_JWT_TOKEN);
 		}
 	}
