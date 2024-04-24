@@ -1,4 +1,4 @@
-package com.petpals;
+package com.petpals.dto;
 
 import com.petpals.clients.dto.CreateCaregiver;
 import com.petpals.clients.dto.Days;
@@ -10,8 +10,8 @@ import org.junit.jupiter.api.Test;
 public class CreateCaregiverTest {
 	@Test
 	void shouldCheckObjectsIntegrity(){
-		var days = 				new Days[]{};
-		var speecies = 				new Species[]{};
+		var days = new Days[]{};
+		var species = new Species[]{};
 		
 		var createCaregiver = new CreateCaregiver(
 				"Sid",
@@ -23,7 +23,7 @@ public class CreateCaregiverTest {
 				"92150",
 				"France",
 				days,
-				speecies,
+				species,
 				false,
 				0.5,
 				CaregiverTypes.GROOMER,
@@ -41,7 +41,7 @@ public class CreateCaregiverTest {
 				"92150",
 				"France",
 				days,
-				speecies,
+				species,
 				false,
 				0.5,
 				CaregiverTypes.GROOMER,
