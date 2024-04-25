@@ -7,12 +7,10 @@ import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
-import org.eclipse.microprofile.openapi.annotations.security.SecurityRequirement;
 import org.jboss.logging.Logger;
 
 
 @Path("/caregivers")
-@SecurityRequirement(name = "api_key")
 public class CreateCaregiverResource {
 	private final Logger logger = Logger.getLogger(this.getClass().getName());
 	

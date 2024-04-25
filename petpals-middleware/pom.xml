@@ -97,11 +97,6 @@
             <artifactId>quarkus-junit5-mockito</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-smallrye-openapi</artifactId>
-            <version>3.8.3</version>
-        </dependency>
     </dependencies>
 
     <build>

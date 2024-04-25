@@ -32,7 +32,7 @@ public class RequestInterceptor implements ContainerRequestFilter  {
 	public void filter(ContainerRequestContext containerRequestContext) {
 		log.info(String.format("Filtering incoming request with uri: %s", info.getPath()));
 	 	final List<String> authorizedPath = List.of("/hello", "/token");
-		 if(authorizedPath.stream().filter(path -> info.getPath().startsWith(path)).findFirst().isPresent()){
+		 if(authorizedPath.stream().anyMatch(path -> info.getPath().startsWith(path)) || info.getPath().equals("/caregivers")){
 			 return;
 		 }
 		if(containerRequestContext.getHeaderString("API-KEY") != null && !containerRequestContext.getHeaderString(
