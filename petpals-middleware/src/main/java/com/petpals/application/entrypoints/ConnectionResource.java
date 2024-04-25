@@ -6,10 +6,12 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
+import org.eclipse.microprofile.openapi.annotations.security.SecurityRequirement;
 import org.jboss.logging.Logger;
 
 
 @Path("/hello")
+@SecurityRequirement(name = "api_key")
 public class ConnectionResource {
 	
 	private final Logger logger = Logger.getLogger(ConnectionResource.class.getName());
