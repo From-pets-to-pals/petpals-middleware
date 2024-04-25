@@ -41,7 +41,7 @@ class CreateCaregiverResourceTest {
 				0.0,
 				0.0
 		);
-		Mockito.when(saveCaregiversIn.createCaregiver(Mockito.any(CreateCaregiver.class))).thenThrow(ResteasyClientErrorException.class);
+		Mockito.when(saveCaregiversIn.createCaregiver(Mockito.any(CreateCaregiver.class))).thenReturn("test");
 	}
 	
 	@Test
@@ -56,7 +56,7 @@ class CreateCaregiverResourceTest {
 				.body(json)
 				.when().post("/caregivers")
 				.then()
-				.statusCode(400);
+				.statusCode(200);
 	}
 	
 	@Test

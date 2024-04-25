@@ -1,7 +1,7 @@
 package com.petpals.bootstrap.interceptors;
 
-import com.petpals.shared.errorhandling.ApplicationExceptions;
 import com.petpals.shared.errorhandling.ExceptionsEnum;
+import com.petpals.shared.errorhandling.PetPalsExceptions;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.container.ContainerRequestContext;
 import jakarta.ws.rs.container.ContainerRequestFilter;
@@ -37,14 +37,13 @@ public class RequestInterceptor implements ContainerRequestFilter  {
 		 }
 		if(containerRequestContext.getHeaderString("API-KEY") != null && !containerRequestContext.getHeaderString(
 				"API-KEY").equals("pals")) {
-			throw new ApplicationExceptions(ExceptionsEnum.CAREGIVER_MIDDLEWARE_MISSING_API_KEY);
+			throw new PetPalsExceptions(ExceptionsEnum.MIDDLEWARE_MISSING_API_KEY);
 		}
 		if(containerRequestContext.getHeaderString("API-KEY") == null && hasJwt()) {
-			
-			throw new ApplicationExceptions(ExceptionsEnum.CAREGIVER_MIDDLEWARE_MISSING_API_KEY);
+			throw new PetPalsExceptions(ExceptionsEnum.MIDDLEWARE_MISSING_API_KEY);
 		}
 		if (!hasJwt()) {
-			throw new ApplicationExceptions(ExceptionsEnum.NO_JWT_TOKEN);
+			throw new PetPalsExceptions(ExceptionsEnum.MIDDLEWARE_NO_JW_TOKEN);
 		}
 	}
 	

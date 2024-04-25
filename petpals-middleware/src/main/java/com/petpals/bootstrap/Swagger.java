@@ -8,6 +8,7 @@ import org.eclipse.microprofile.openapi.annotations.info.Contact;
 import org.eclipse.microprofile.openapi.annotations.info.Info;
 import org.eclipse.microprofile.openapi.annotations.info.License;
 import org.eclipse.microprofile.openapi.annotations.security.SecurityScheme;
+import org.eclipse.microprofile.openapi.annotations.security.SecuritySchemes;
 
 @OpenAPIDefinition(
 		info = @Info(
@@ -18,12 +19,24 @@ import org.eclipse.microprofile.openapi.annotations.security.SecurityScheme;
 				contact = @Contact(name = "Sid", email = "sa.bennaceur@gmail.com")
 		)
 )
-@SecurityScheme(
-		scheme ="api-key",
-		securitySchemeName = "api_key",
-		type = SecuritySchemeType.APIKEY,
-		apiKeyName = "API-KEY",
-		in = SecuritySchemeIn.HEADER
+@SecuritySchemes({
+				@SecurityScheme(
+						scheme ="apiKey",
+						securitySchemeName = "API-KEY",
+						type = SecuritySchemeType.APIKEY,
+						apiKeyName = "API-KEY",
+						in = SecuritySchemeIn.HEADER
+				),
+				@SecurityScheme(
+						scheme ="bearer",
+						description = "jwt",
+						securitySchemeName = "something something",
+						type = SecuritySchemeType.HTTP,
+						bearerFormat = "jwt",
+						in = SecuritySchemeIn.DEFAULT
+				)
+				
+		}
 )
 public class Swagger extends Application {
 }
