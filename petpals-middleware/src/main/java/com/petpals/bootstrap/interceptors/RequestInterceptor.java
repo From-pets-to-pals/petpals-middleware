@@ -8,6 +8,8 @@ import jakarta.ws.rs.container.ContainerRequestFilter;
 import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.UriInfo;
 import jakarta.ws.rs.ext.Provider;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
+import org.eclipse.microprofile.jwt.Claims;
 import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.jboss.logging.Logger;
 
@@ -27,7 +29,8 @@ public class RequestInterceptor implements ContainerRequestFilter  {
 	public RequestInterceptor(JsonWebToken jwt) {
 		this.jwt = jwt;
 	}
-	
+	@ConfigProperty(name = "claims.origin")
+	public String origin;
 	@Override
 	public void filter(ContainerRequestContext containerRequestContext) {
 		log.info(String.format("Filtering incoming request with uri: %s", info.getPath()));
@@ -47,6 +50,12 @@ public class RequestInterceptor implements ContainerRequestFilter  {
 			throw new PetPalsExceptions(ExceptionsEnum.MIDDLEWARE_MISSING_API_KEY);
 		}
 		if (!hasJwt()) {
+			throw new PetPalsExceptions(ExceptionsEnum.MIDDLEWARE_NO_JW_TOKEN);
+		}
+		if(hasJwt() && !jwt.containsClaim(Claims.address.name())){
+			throw new PetPalsExceptions(ExceptionsEnum.MIDDLEWARE_NO_JW_TOKEN);
+		}
+		if (hasJwt() && jwt.containsClaim(Claims.address.name()) && (jwt.getClaim(Claims.address.name()) == null || !jwt.getClaim(Claims.address.name()).equals(origin))) {
 			throw new PetPalsExceptions(ExceptionsEnum.MIDDLEWARE_NO_JW_TOKEN);
 		}
 	}
