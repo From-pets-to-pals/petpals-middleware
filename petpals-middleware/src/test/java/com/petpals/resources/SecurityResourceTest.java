@@ -15,14 +15,13 @@ public class SecurityResourceTest {
 	@InjectMock
 	CaregiversHealthCheckIn caregiversHealthCheckClient;
 	@Test
-	void shouldAcceptRequestWhenEntrypointNotSecured() {
+	void shouldFailAsUnauthorizedWithoutApiKey() {
 		Mockito.when(caregiversHealthCheckClient.hello()).thenReturn("Hello RESTEasy");
 		
 		given()
 				.when().get("/hello")
 				.then()
-				.statusCode(200)
-				.body(is("Hello RESTEasy"));
+				.statusCode(401);
 	}
 	
 	@Test
@@ -31,7 +30,6 @@ public class SecurityResourceTest {
 		Mockito.when(caregiversHealthCheckClient.helloYou(name)).thenReturn("Hello "+ name);
 		given()
 				.header("API-KEY", "pals")
-				.header("Authorization", "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJwZXRwYWxzIiwidXBuIjoic2EuYmVubmFjZXVyQGdtYWlsLmNvbSIsImdyb3VwcyI6WyJDYXJlZ2l2ZXJzIiwiT3duZXJzIl0sImV4cCI6MTcxNTEzMzgyMCwiYWRkcmVzcyI6InBldHBhbHMtYXBwcyIsImlhdCI6MTcxMzkyNDIyMCwianRpIjoiMzA3ZTY3Y2QtZDQ1Zi00OWMyLWFlZTEtZmZiNTI5MWZmOWVkIn0.qnQ1znsWaqfO-mU0LLA5EwSJ1L8Ko01-Qx5lF5WeZUkwk_nmh0arO16CtsJmmwi-pFrbipnKmlp9z9sLevoIrqb9ldQ7DQPDgbF0QCXQjGJK9BQjqieIyw9lLXgLlwn-VZv-tG74JvPnUxXOZpWit1MPBSwuWqfHwBe_McBV9pBKOwZ33Gx_c2SGjjUCel1ChCmAx0VXkEdivm-tcAzeOmPyFcphMdNB22CyiqrETtegfKH3eBAa81n4s0kFOjVJ-B6uFIQKzOwHnvKbg7OdxHDlXSVIoUaE4e1WEv2uR2NZTSVlrP9KIO24zg6TKMdf1vKfIod77AAASfmo21cBVA")
 				.when().get("/hello/".concat(name))
 				.then()
 				.statusCode(200)
@@ -42,11 +40,10 @@ public class SecurityResourceTest {
 	
 	
 	@Test
-	void shouldReturnHelloWithNameWhenProvidingCredentials() {
+	void shouldReturnHelloWhenProvidingCredentials() {
 		Mockito.when(caregiversHealthCheckClient.helloYou("nono")).thenReturn("Hello ".concat("nono"));
 		given()
 				.header("API-KEY", "pals")
-				.header("Authorization", "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJwZXRwYWxzIiwidXBuIjoic2EuYmVubmFjZXVyQGdtYWlsLmNvbSIsImdyb3VwcyI6WyJDYXJlZ2l2ZXJzIiwiT3duZXJzIl0sImV4cCI6MTcxNTEzMzgyMCwiYWRkcmVzcyI6InBldHBhbHMtYXBwcyIsImlhdCI6MTcxMzkyNDIyMCwianRpIjoiMzA3ZTY3Y2QtZDQ1Zi00OWMyLWFlZTEtZmZiNTI5MWZmOWVkIn0.qnQ1znsWaqfO-mU0LLA5EwSJ1L8Ko01-Qx5lF5WeZUkwk_nmh0arO16CtsJmmwi-pFrbipnKmlp9z9sLevoIrqb9ldQ7DQPDgbF0QCXQjGJK9BQjqieIyw9lLXgLlwn-VZv-tG74JvPnUxXOZpWit1MPBSwuWqfHwBe_McBV9pBKOwZ33Gx_c2SGjjUCel1ChCmAx0VXkEdivm-tcAzeOmPyFcphMdNB22CyiqrETtegfKH3eBAa81n4s0kFOjVJ-B6uFIQKzOwHnvKbg7OdxHDlXSVIoUaE4e1WEv2uR2NZTSVlrP9KIO24zg6TKMdf1vKfIod77AAASfmo21cBVA")
 				.when().get("/hello/nono")
 				.then()
 				.statusCode(200)

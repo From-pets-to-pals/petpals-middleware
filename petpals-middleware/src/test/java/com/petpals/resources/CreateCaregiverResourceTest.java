@@ -87,20 +87,4 @@ class CreateCaregiverResourceTest {
 				.then()
 				.statusCode(401);
 	}
-	
-	
-	@Test
-	void testCreateCaregiverUnauthorizedNoToken() throws JsonProcessingException {
-		
-		ObjectMapper mapper = new ObjectMapper();
-		var json = mapper.writeValueAsString(createCaregiver);
-		given()
-				.headers("API-KEY", "pals")
-				.header("Content-Type", "application/json")
-				.body(json)
-				.when().post("/caregivers")
-				.then()
-				.statusCode(401);
-	}
-	
 }

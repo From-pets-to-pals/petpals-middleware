@@ -10,7 +10,7 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.is;
 
 @QuarkusTest
-public class JwtTokenResourceTest {
+class JwtTokenResourceTest {
 	static final String email = "sa.bennaceur@test.com";
 	static final String caregiverType = "Groomers";
 	static final String response = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9" +
@@ -18,13 +18,12 @@ public class JwtTokenResourceTest {
 	@InjectMock
 	JwtTokenGeneratorPort jwtTokenGeneratorPort;
 	@Test
-	void shouldAcceptRequestWhenEntrypointNotSecured() {
+	void shouldNotGetTokeWithoutApiKey() {
 		Mockito.when(jwtTokenGeneratorPort.getToken(email,caregiverType)).thenReturn(response);
 		
 		given()
 				.when().get(String.format("/token/%s/%s", email, caregiverType))
 				.then()
-				.statusCode(200)
-				.body(is(response));
+				.statusCode(401);
 	}
 }

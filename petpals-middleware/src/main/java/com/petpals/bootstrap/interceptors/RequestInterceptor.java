@@ -33,6 +33,10 @@ public class RequestInterceptor implements ContainerRequestFilter  {
 		log.info(String.format("Filtering incoming request with uri: %s", info.getPath()));
 	 	final List<String> authorizedPath = List.of("/hello", "/token");
 		 if(authorizedPath.stream().anyMatch(path -> info.getPath().startsWith(path)) || info.getPath().equals("/caregivers")){
+			 if(containerRequestContext.getHeaderString("API-KEY") == null || !containerRequestContext.getHeaderString(
+					 "API-KEY").equals("pals")) {
+				 throw new PetPalsExceptions(ExceptionsEnum.MIDDLEWARE_MISSING_API_KEY);
+			 }
 			 return;
 		 }
 		if(containerRequestContext.getHeaderString("API-KEY") != null && !containerRequestContext.getHeaderString(
