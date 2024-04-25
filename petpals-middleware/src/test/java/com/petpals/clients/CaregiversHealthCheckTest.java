@@ -42,7 +42,37 @@ class CaregiversHealthCheckTest {
 		Assertions.assertThrows(PetPalsExceptions.class, () -> caregiversHealthCheckOut.hello());
 		Mockito.verify(caregiversHealthCheckClient).hello();
 	}
+	
 	@Order(3)
+	@Test
+	void shouldReturnHelloMessage(){
+		Mockito.when(caregiversHealthCheckClient.hello()).thenReturn("Hello RestEASY");
+		var res = caregiversHealthCheckOut.hello();
+		Assertions.assertEquals("Hello RestEASY", res);
+	}
+	@Order(4)
+	@ParameterizedTest
+	@CsvSource(
+			value = {"Arnaud","Benjamin","David"}
+	)
+	void shouldThrowResteasyWeebApplicationExceptionWhenCallingHelloName(String name){
+		Mockito.when(caregiversHealthCheckClient.helloYou(name)).thenThrow(ResteasyWebApplicationException.class);
+		Assertions.assertThrows(PetPalsExceptions.class, () -> caregiversHealthCheckOut.helloYou(name));
+		Mockito.verify(caregiversHealthCheckClient).helloYou(name);
+	}
+	
+	
+	@Order(5)
+	@ParameterizedTest
+	@CsvSource(
+			value = {"Shan","Denice","Denis"}
+	)
+	void shouldThrowResteasyClientApplicationExceptionWhenCallingHelloName(String name){
+		Mockito.when(caregiversHealthCheckClient.helloYou(name)).thenThrow(ResteasyClientErrorException.class);
+		Assertions.assertThrows(PetPalsExceptions.class, () -> caregiversHealthCheckOut.helloYou(name));
+		Mockito.verify(caregiversHealthCheckClient).helloYou(name);
+	}
+	@Order(6)
 	@ParameterizedTest
 	@CsvSource(
 			value = {"Sid","Nono","Lucas"}
@@ -54,11 +84,7 @@ class CaregiversHealthCheckTest {
 		Assertions.assertEquals(toReturn, res);
 	}
 	
-	@Order(4)
-	@Test
-	void shouldReturnHelloMessage(){
-		Mockito.when(caregiversHealthCheckClient.hello()).thenReturn("Hello RestEASY");
-		var res = caregiversHealthCheckOut.hello();
-		Assertions.assertEquals("Hello RestEASY", res);
-	}
+	
+	
+	
 }
