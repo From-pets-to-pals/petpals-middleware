@@ -12,6 +12,7 @@ stages:
     - checkout: self
       persistCredentials: true
     - task: CmdLine@2
+      displayName: Fetch additional repos
       inputs:
         script: |
           git clone https://$(GIT_USER):$(PAT)@github.com/From-pets-to-pals/petpals-common.git
@@ -21,9 +22,11 @@ stages:
           ls $(APP_NAME)/src/main/resources
           cat petpals-conf/dev/middleware/resources/application.properties
     - task: CmdLine@2
+      displayName: Download Maven
       inputs:
         script: 'wget https://archive.apache.org/dist/maven/maven-3/3.9.6/binaries/apache-maven-3.9.6-bin.zip'
     - task: ExtractFiles@1
+      displayName: Extract maven
       inputs:
         archiveFilePatterns: 'apache-maven-3.9.6-bin.zip'
         destinationFolder: '$(Build.SourcesDirectory)/maven'
@@ -44,7 +47,8 @@ stages:
         mavenAuthenticateFeed: false
         effectivePomSkip: false
         sonarQubeRunAnalysis: false
-    - task: Maven@3
+    - task: Maven@4
+      displayName: Compile, Test, Build Jar
       inputs:
         mavenPomFile: '$(Build.SourcesDirectory)/$(APP_NAME)/pom.xml'
         goals: 'clean package'
@@ -63,11 +67,12 @@ stages:
       inputs:
         summaryFileLocation: '$(Build.SourcesDirectory)/$(APP_NAME)/target/jacoco-report/jacoco.xml'
         failIfCoverageEmpty: true
-    - task: Maven@3
+    - task: Maven@4
+      displayName: Run Sonar Analysis
       inputs:
         mavenPomFile: '$(Build.SourcesDirectory)/$(APP_NAME)/pom.xml'
         goals: 'sonar:sonar'
-        options: '-Dsonar.token=$(SONAR_TOKEN)'
+        options: '-Dsonar.token=$(SONAR_TOKEN) -Dsonar.qualitygate.wait=true'
         publishJUnitResults: true
         testResultsFiles: '**/surefire-reports/TEST-*.xml'
         javaHomeOption: 'JDKVersion'
