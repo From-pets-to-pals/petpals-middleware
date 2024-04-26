@@ -24,6 +24,7 @@ stages:
         SourceFolder: '$(System.ArtifactsDirectory)/$(APP_NAME)'
         Contents: '$(APP_NAME)-runner.jar'
         TargetFolder: '$(System.DefaultWorkingDirectory)'
+        CleanTargetFolder: true
         OverWrite: true
     - task: AzureWebApp@1
       inputs:
