@@ -17,7 +17,7 @@
         <skipITs>true</skipITs>
         <surefire-plugin.version>3.2.5</surefire-plugin.version>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-        <sonar.projectKey>From-pets-to-pals_petpals-caregivers</sonar.projectKey>
+        <sonar.projectKey>From-pets-to-pals_petpals-middleware</sonar.projectKey>
         <sonar.organization>from-pets-to-pals</sonar.organization>
     </properties>
     <dependencyManagement>
