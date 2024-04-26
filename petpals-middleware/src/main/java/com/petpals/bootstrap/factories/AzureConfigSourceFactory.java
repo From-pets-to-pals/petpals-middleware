@@ -7,18 +7,18 @@ import java.util.OptionalInt;
 import com.azure.identity.ClientSecretCredentialBuilder;
 import com.azure.security.keyvault.secrets.SecretClient;
 import com.azure.security.keyvault.secrets.SecretClientBuilder;
+import io.smallrye.config.ConfigSourceFactory;
 import org.eclipse.microprofile.config.spi.ConfigSource;
 
 import io.smallrye.config.ConfigSourceContext;
 import io.smallrye.config.ConfigValue;
 import io.smallrye.config.PropertiesConfigSource;
 
-public class AzureConfigSourceFactory implements io.smallrye.config.ConfigSourceFactory {
-	private final String CLAIMS = "claims.origin";
-	private final String ISSUER = "mp.jwt.verify.issuer";
-	
-	private final String PALS_API_KEY = "pals.api.key";
-	private final String CAREGIVERS_API_KEY = "caregivers.api.key";
+public class AzureConfigSourceFactory implements ConfigSourceFactory {
+	private static final String CLAIMS = "claims.origin";
+	private static final String ISSUER = "mp.jwt.verify.issuer";
+	private static final String PALS_API_KEY = "pals.api.key";
+	private static final String CAREGIVERS_API_KEY = "caregivers.api.key";
 	@Override
 	public Iterable<ConfigSource> getConfigSources(final ConfigSourceContext context) {
 		final ConfigValue caregiversApiKey = context.getValue(CAREGIVERS_API_KEY);

@@ -3,7 +3,6 @@ package com.petpals.clients.services;
 import com.petpals.clients.dto.CreateCaregiver;
 import com.petpals.clients.endpoints.SaveCaregiversClient;
 import com.petpals.domain.ports.out.SaveCaregiversOut;
-import com.petpals.domain.services.JwtTokenGenerator;
 import com.petpals.shared.errorhandling.ExceptionsEnum;
 import com.petpals.shared.errorhandling.PetPalsExceptions;
 import jakarta.enterprise.context.ApplicationScoped;

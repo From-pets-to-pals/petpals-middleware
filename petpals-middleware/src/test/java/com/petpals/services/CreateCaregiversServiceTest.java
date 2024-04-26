@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 @QuarkusTest
-public class CreateCaregiversServiceTest {
+class CreateCaregiversServiceTest {
 	
 	@Inject
 	SaveCaregiversIn saveCaregiversIn;

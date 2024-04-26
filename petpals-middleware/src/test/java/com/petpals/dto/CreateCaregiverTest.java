@@ -7,7 +7,7 @@ import com.petpals.shared.enums.Species;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class CreateCaregiverTest {
+class CreateCaregiverTest {
 	@Test
 	void shouldCheckObjectsIntegrity(){
 		var days = new Days[]{};

@@ -12,7 +12,7 @@ import org.jboss.logging.Logger;
 
 @Path("/caregivers")
 public class CreateCaregiverResource {
-	private final Logger logger = Logger.getLogger(this.getClass().getName());
+	private static final Logger LOGGER = Logger.getLogger(CreateCaregiverResource.class);
 	
 	SaveCaregiversIn saveCaregiversIn;
 	
@@ -24,9 +24,8 @@ public class CreateCaregiverResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	public String createCaregiver(CreateCaregiver createCaregiver) {
-		logger.info("Call create caregiver");
-		if (logger.isInfoEnabled()) {
-			logger.info(String.format("Create caregiver call with : %s", createCaregiver.toString()));
+		if (LOGGER.isInfoEnabled()) {
+			LOGGER.info(String.format("Create caregiver call with caregiver : %s", createCaregiver.toString()));
 		}
 		return saveCaregiversIn.createCaregiver(createCaregiver);
 	}

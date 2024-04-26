@@ -10,7 +10,7 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.is;
 
 @QuarkusTest
-public class SecurityResourceTest {
+class SecurityResourceTest {
 	static final String name = "something";
 	@InjectMock
 	CaregiversHealthCheckIn caregiversHealthCheckClient;
@@ -25,7 +25,7 @@ public class SecurityResourceTest {
 	}
 	
 	@Test
-	void shoulldAcceptRequestWhenProvidingFullCredentialsOnSecureEntrypoint() {
+	void shouldAcceptRequestWhenProvidingFullCredentialsOnSecureEntrypoint() {
 		
 		Mockito.when(caregiversHealthCheckClient.helloYou(name)).thenReturn("Hello "+ name);
 		given()

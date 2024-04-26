@@ -14,7 +14,7 @@ import org.jboss.logging.Logger;
 @SecurityRequirement(name = "api_key")
 public class ConnectionResource {
 	
-	private final Logger logger = Logger.getLogger(ConnectionResource.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(ConnectionResource.class.getName());
 	
 	CaregiversHealthCheckIn caregiversHealthCheckIn;
 	
@@ -25,6 +25,9 @@ public class ConnectionResource {
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
 	public String getHello() {
+		if(LOGGER.isInfoEnabled()){
+			LOGGER.info("Call get Hello");
+		}
 		return caregiversHealthCheckIn.hello();
 	}
 	
@@ -33,6 +36,9 @@ public class ConnectionResource {
 	@Path("/{name}")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String helloRolesAllowed(@PathParam("name") String name) {
+		if(LOGGER.isInfoEnabled()){
+			LOGGER.info(String.format("Call get Hello %s", name));
+		}
 		return caregiversHealthCheckIn.helloYou(name);
 	}
 }

@@ -18,12 +18,13 @@ import java.util.List;
 
 @Provider
 public class RequestInterceptor implements ContainerRequestFilter  {
-	public static final Logger log = Logger.getLogger(RequestInterceptor.class.getName());
+	public static final Logger LOGGER = Logger.getLogger(RequestInterceptor.class.getName());
 	
 	JsonWebToken jwt;
 	@Context
 	UriInfo info;
 	
+	private static final String HEADER_NAME = "API-KEY";
 	
 	@Inject
 	public RequestInterceptor(JsonWebToken jwt) {
@@ -33,20 +34,20 @@ public class RequestInterceptor implements ContainerRequestFilter  {
 	public String origin;
 	@Override
 	public void filter(ContainerRequestContext containerRequestContext) {
-		log.info(String.format("Filtering incoming request with uri: %s", info.getPath()));
+		LOGGER.info(String.format("Filtering incoming request with uri: %s", info.getPath()));
 	 	final List<String> authorizedPath = List.of("/hello", "/token");
 		 if(authorizedPath.stream().anyMatch(path -> info.getPath().startsWith(path)) || info.getPath().equals("/caregivers")){
-			 if(containerRequestContext.getHeaderString("API-KEY") == null || !containerRequestContext.getHeaderString(
-					 "API-KEY").equals("pals")) {
+			 if(containerRequestContext.getHeaderString(HEADER_NAME) == null || !containerRequestContext.getHeaderString(
+					 HEADER_NAME).equals("pals")) {
 				 throw new PetPalsExceptions(ExceptionsEnum.MIDDLEWARE_MISSING_API_KEY);
 			 }
 			 return;
 		 }
-		if(containerRequestContext.getHeaderString("API-KEY") != null && !containerRequestContext.getHeaderString(
-				"API-KEY").equals("pals")) {
+		if(containerRequestContext.getHeaderString(HEADER_NAME) != null && !containerRequestContext.getHeaderString(
+				HEADER_NAME).equals("pals")) {
 			throw new PetPalsExceptions(ExceptionsEnum.MIDDLEWARE_MISSING_API_KEY);
 		}
-		if(containerRequestContext.getHeaderString("API-KEY") == null && hasJwt()) {
+		if(containerRequestContext.getHeaderString(HEADER_NAME) == null && hasJwt()) {
 			throw new PetPalsExceptions(ExceptionsEnum.MIDDLEWARE_MISSING_API_KEY);
 		}
 		if (!hasJwt()) {
