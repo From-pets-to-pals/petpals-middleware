@@ -1,7 +1,5 @@
 trigger:
 - main
-variables:
-  Agent.Source.Git.ShallowFetchDepth: 1
 
 name: middleware-$(Build.BuildId)
 
