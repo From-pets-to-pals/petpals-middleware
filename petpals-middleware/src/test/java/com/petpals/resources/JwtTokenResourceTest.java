@@ -18,12 +18,24 @@ class JwtTokenResourceTest {
 	@InjectMock
 	JwtTokenGeneratorPort jwtTokenGeneratorPort;
 	@Test
-	void shouldNotGetTokeWithoutApiKey() {
+	void shouldNotGetTokenWithoutApiKey() {
 		Mockito.when(jwtTokenGeneratorPort.getToken(email,caregiverType)).thenReturn(response);
 		
 		given()
 				.when().get(String.format("/token/%s/%s", email, caregiverType))
 				.then()
 				.statusCode(401);
+	}
+	
+	@Test
+	void shouldGetTokenn() {
+		Mockito.when(jwtTokenGeneratorPort.getToken(email,caregiverType)).thenReturn(response);
+		
+		given()
+				.headers("API-KEY", "pals")
+				.when().get(String.format("/token/%s/%s", email, caregiverType))
+				.then()
+				.statusCode(200)
+				.body(is(response));
 	}
 }
