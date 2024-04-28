@@ -10,6 +10,8 @@ stages:
   - job: PackageAndBuild
     steps:
     - checkout: self
+      fetchDepth: 1
+      clean: true
       persistCredentials: true
     - task: CmdLine@2
       displayName: Fetch additional repos
