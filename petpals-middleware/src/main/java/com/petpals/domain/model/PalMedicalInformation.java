@@ -8,10 +8,13 @@ import java.util.Objects;
 
 public final class PalMedicalInformation {
 	private boolean isVaccinated;
-	private final List<String> medicalHistory;
+	private List<String> medicalHistory;
 	private @Future Date nextVaccine;
 	private @Future Date nextPlannedVetApp;
 	private boolean isSterilized;
+	
+	public PalMedicalInformation() {
+	}
 	
 	public PalMedicalInformation(
 			
@@ -64,6 +67,22 @@ public final class PalMedicalInformation {
 	
 	public void setSterilized(boolean sterilized) {
 		isSterilized = sterilized;
+	}
+	
+	public List<String> getMedicalHistory() {
+		return medicalHistory;
+	}
+	
+	public void setMedicalHistory(List<String> medicalHistory) {
+		this.medicalHistory = medicalHistory;
+	}
+	
+	public Date getNextVaccine() {
+		return nextVaccine;
+	}
+	
+	public Date getNextPlannedVetApp() {
+		return nextPlannedVetApp;
 	}
 	
 	@Override
