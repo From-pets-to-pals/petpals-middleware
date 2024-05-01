@@ -1,6 +1,6 @@
 package com.petpals.clients;
 
-import com.petpals.clients.endpoints.CaregiversHealthCheckClient;
+import com.petpals.clients.endpoints.caregivers.CaregiversHealthCheckClient;
 import com.petpals.domain.ports.out.CaregiversHealthCheckOut;
 import com.petpals.shared.errorhandling.PetPalsExceptions;
 import io.quarkus.test.InjectMock;

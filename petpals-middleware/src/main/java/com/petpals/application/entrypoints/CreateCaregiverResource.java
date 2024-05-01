@@ -1,6 +1,6 @@
 package com.petpals.application.entrypoints;
 
-import com.petpals.clients.dto.CreateCaregiver;
+import com.petpals.clients.dto.caregivers.CreateCaregiver;
 import com.petpals.domain.ports.in.SaveCaregiversIn;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.POST;

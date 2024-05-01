@@ -1,7 +1,7 @@
-package com.petpals.clients.services;
+package com.petpals.clients.services.caregivers;
 
-import com.petpals.clients.dto.CreateCaregiver;
-import com.petpals.clients.endpoints.SaveCaregiversClient;
+import com.petpals.clients.dto.caregivers.CreateCaregiver;
+import com.petpals.clients.endpoints.caregivers.SaveCaregiversClient;
 import com.petpals.domain.ports.out.SaveCaregiversOut;
 import com.petpals.shared.errorhandling.ExceptionsEnum;
 import com.petpals.shared.errorhandling.PetPalsExceptions;

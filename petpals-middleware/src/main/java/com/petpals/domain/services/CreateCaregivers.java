@@ -1,6 +1,6 @@
 package com.petpals.domain.services;
 
-import com.petpals.clients.dto.CreateCaregiver;
+import com.petpals.clients.dto.caregivers.CreateCaregiver;
 import com.petpals.domain.ports.in.SaveCaregiversIn;
 import com.petpals.domain.ports.out.SaveCaregiversOut;
 import jakarta.enterprise.context.ApplicationScoped;

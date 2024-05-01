@@ -1,7 +1,7 @@
 package com.petpals.dto;
 
-import com.petpals.clients.dto.CreateCaregiver;
-import com.petpals.clients.dto.Days;
+import com.petpals.clients.dto.caregivers.CreateCaregiver;
+import com.petpals.clients.dto.caregivers.Days;
 import com.petpals.shared.enums.CaregiverTypes;
 import com.petpals.shared.enums.Species;
 import org.junit.jupiter.api.Assertions;

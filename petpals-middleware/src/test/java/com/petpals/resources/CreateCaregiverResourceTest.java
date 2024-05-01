@@ -2,14 +2,13 @@ package com.petpals.resources;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.petpals.clients.dto.CreateCaregiver;
-import com.petpals.clients.dto.Days;
+import com.petpals.clients.dto.caregivers.CreateCaregiver;
+import com.petpals.clients.dto.caregivers.Days;
 import com.petpals.domain.ports.in.SaveCaregiversIn;
 import com.petpals.shared.enums.CaregiverTypes;
 import com.petpals.shared.enums.Species;
 import io.quarkus.test.InjectMock;
 import io.quarkus.test.junit.QuarkusTest;
-import org.jboss.resteasy.client.exception.ResteasyClientErrorException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;

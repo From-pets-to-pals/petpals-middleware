@@ -1,7 +1,8 @@
-package com.petpals.clients.endpoints;
+package com.petpals.clients.endpoints.caregivers;
 
 import com.petpals.bootstrap.factories.CaregiversClientConfigurationFactory;
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.RequestScoped;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import org.eclipse.microprofile.rest.client.annotation.RegisterClientHeaders;
@@ -22,7 +23,7 @@ import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
  */
 @RegisterRestClient(baseUri = "https://petpals-caregivers.azurewebsites.net/")
 @RegisterClientHeaders(CaregiversClientConfigurationFactory.class)
-@ApplicationScoped
+@RequestScoped
 @Path("/hello")
 public interface CaregiversHealthCheckClient {
 	

@@ -1,4 +1,4 @@
-package com.petpals.clients.dto;
+package com.petpals.clients.dto.caregivers;
 
 
 import com.petpals.shared.enums.CaregiverTypes;
