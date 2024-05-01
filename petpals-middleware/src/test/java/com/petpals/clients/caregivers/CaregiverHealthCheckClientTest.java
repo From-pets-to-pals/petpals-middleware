@@ -1,4 +1,4 @@
-package com.petpals.clients;
+package com.petpals.clients.caregivers;
 
 import com.petpals.clients.endpoints.caregivers.CaregiversHealthCheckClient;
 import io.quarkus.test.junit.QuarkusTest;

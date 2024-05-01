@@ -1,4 +1,4 @@
-package com.petpals.clients;
+package com.petpals.clients.caregivers;
 
 import com.petpals.clients.endpoints.caregivers.CaregiversHealthCheckClient;
 import com.petpals.domain.ports.out.CaregiversHealthCheckOut;

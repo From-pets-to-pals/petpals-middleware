@@ -23,15 +23,15 @@ public final class CreateOwnerCommand {
 		this.pals = pals;
 	}
 	
-	public @Email String email() {
+	public String getEmail() {
 		return email;
 	}
 	
-	public @NotBlank String deviceId() {
+	public String getDeviceId() {
 		return deviceId;
 	}
 	
-	public @NotBlank String reference() {
+	public String getReference() {
 		return reference;
 	}
 	
@@ -39,11 +39,11 @@ public final class CreateOwnerCommand {
 		this.reference = reference;
 	}
 	
-	public @NotBlank String location() {
+	public String getLocation() {
 		return location;
 	}
 	
-	public @NotNull List<CreatePalCommand> pals() {
+	public List<CreatePalCommand> getPals() {
 		return pals;
 	}
 	

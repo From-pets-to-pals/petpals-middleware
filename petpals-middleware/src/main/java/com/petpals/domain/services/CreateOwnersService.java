@@ -27,10 +27,11 @@ public class CreateOwnersService implements CreateOwnerIn {
 		var reference = UUIDFormatter.formatUUIDSequence(UUIDGenerator.generateUUID(), true,"");
 		createOwnerCommand.setReference(reference);
 		LOGGER.info(String.format("Attributing %s as a reference for owner %s", reference, createOwnerCommand));
-		LOGGER.info(String.format("Owner %s has %d pals", createOwnerCommand.email(), createOwnerCommand.pals().size()));
+		LOGGER.info(String.format("Owner %s has %d pals", createOwnerCommand.getEmail(),
+								  createOwnerCommand.getPals().size()));
 		
-		if(!createOwnerCommand.pals().isEmpty()){
-			for(CreatePalCommand pal: createOwnerCommand.pals()){
+		if(!createOwnerCommand.getPals().isEmpty()){
+			for(CreatePalCommand pal: createOwnerCommand.getPals()){
 				reference = UUIDFormatter.formatUUIDSequence(UUIDGenerator.generateUUID(), true,"");
 				LOGGER.info(String.format("Attributing %s as a reference for pal %s", reference, createOwnerCommand));
 				pal.setReference(reference);

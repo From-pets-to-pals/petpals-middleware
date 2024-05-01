@@ -1,4 +1,4 @@
-package com.petpals.clients;
+package com.petpals.clients.caregivers;
 
 import com.petpals.clients.dto.caregivers.CreateCaregiver;
 import com.petpals.clients.dto.caregivers.Days;
