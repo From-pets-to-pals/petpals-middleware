@@ -1,5 +1,7 @@
 package com.petpals.domain.ports.in;
 
-public interface CreateOwnerIn {
+import com.petpals.domain.commands.pals.CreateOwnerCommand;
 
+public interface CreateOwnerIn {
+	void createOwners(CreateOwnerCommand createOwnerCommand);
 }

@@ -1,4 +1,4 @@
-package com.petpals.application.entrypoints;
+package com.petpals.application.entrypoints.caregivers;
 
 import com.petpals.clients.dto.caregivers.CreateCaregiver;
 import com.petpals.domain.ports.in.SaveCaregiversIn;

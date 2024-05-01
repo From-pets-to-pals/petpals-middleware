@@ -1,4 +1,4 @@
-package com.petpals.application.entrypoints;
+package com.petpals.application.entrypoints.caregivers;
 
 import com.petpals.domain.ports.in.CaregiversHealthCheckIn;
 import jakarta.ws.rs.GET;
@@ -12,13 +12,13 @@ import org.jboss.logging.Logger;
 
 @Path("/hello")
 @SecurityRequirement(name = "api_key")
-public class ConnectionResource {
+public class CaregiversHealthCheckResource {
 	
-	private static final Logger LOGGER = Logger.getLogger(ConnectionResource.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(CaregiversHealthCheckResource.class.getName());
 	
 	CaregiversHealthCheckIn caregiversHealthCheckIn;
 	
-	public ConnectionResource(CaregiversHealthCheckIn caregiversHealthCheckIn) {
+	public CaregiversHealthCheckResource(CaregiversHealthCheckIn caregiversHealthCheckIn) {
 		this.caregiversHealthCheckIn = caregiversHealthCheckIn;
 	}
 	

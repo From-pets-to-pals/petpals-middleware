@@ -10,7 +10,7 @@ import java.util.Objects;
 public final class CreateOwnerCommand {
 	private final @Email String email;
 	private final @NotBlank String deviceId;
-	private final @NotBlank String reference;
+	private @NotBlank String reference;
 	private final @NotBlank String location;
 	private final @NotNull List<CreatePalCommand> pals;
 	
@@ -33,6 +33,10 @@ public final class CreateOwnerCommand {
 	
 	public @NotBlank String reference() {
 		return reference;
+	}
+	
+	public void setReference(String reference) {
+		this.reference = reference;
 	}
 	
 	public @NotBlank String location() {
