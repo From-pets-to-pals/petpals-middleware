@@ -73,7 +73,7 @@ stages:
       inputs:
         mavenPomFile: '$(Build.SourcesDirectory)/$(APP_NAME)/pom.xml'
         goals: 'sonar:sonar'
-        options: '-Dsonar.token=$(SONAR_TOKEN) -Dsonar.qualitygate.wait=true -Dsonar.branch.name=$(Build.SourceBranchName)'
+        options: '-Dsonar.token=$(SONAR_TOKEN) -Dsonar.qualitygate.wait=true'
         publishJUnitResults: true
         testResultsFiles: '**/surefire-reports/TEST-*.xml'
         javaHomeOption: 'JDKVersion'
