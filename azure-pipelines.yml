@@ -68,6 +68,12 @@ stages:
       inputs:
         summaryFileLocation: '$(Build.SourcesDirectory)/$(APP_NAME)/target/jacoco-report/jacoco.xml'
         failIfCoverageEmpty: true
+    - task: CmdLine@2
+      displayName: Fetch additional repos
+      inputs:
+        script: |
+          cd $(Build.SourcesDirectory)/$(APP_NAME)/pom.xml
+          git show-ref
     - task: Maven@4
       condition: eq(variables['Build.SourceBranchName'], 'main')
       displayName: Run Sonar Analysis
