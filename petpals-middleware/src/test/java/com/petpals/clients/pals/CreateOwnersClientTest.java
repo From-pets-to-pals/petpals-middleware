@@ -80,9 +80,8 @@ class CreateOwnersClientTest {
 				)
 		);
 		newOwner = createOwnerMapper.fromDomain(createOwnerCommand);
-		
-		System.out.println(newOwner);
 	}
+	
 	@Test
 	void shouldReturnIdUponCreateCaregivers(){
 		var toReturn = 1L;
