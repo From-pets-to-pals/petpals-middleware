@@ -10,7 +10,6 @@ import org.jboss.logging.Logger;
 
 @ApplicationScoped
 public class CaregiversClientConfigurationFactory implements ClientHeadersFactory {
-	private final Logger logger = Logger.getLogger(CaregiversClientConfigurationFactory.class);
 	@ConfigProperty(name = "caregivers.api.key")
 	String apiKey;
 	

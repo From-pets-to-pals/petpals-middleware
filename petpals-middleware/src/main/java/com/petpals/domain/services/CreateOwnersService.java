@@ -10,6 +10,7 @@ import com.petpals.shared.errorhandling.ExceptionsEnum;
 import com.petpals.shared.errorhandling.PetPalsExceptions;
 import jakarta.enterprise.context.ApplicationScoped;
 
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @ApplicationScoped
@@ -24,16 +25,19 @@ public class CreateOwnersService implements CreateOwnerIn {
 	@Override
 	public void createOwners(CreateOwnerCommand createOwnerCommand) {
 		LOGGER.info("Creating owner");
-		var reference = UUIDFormatter.formatUUIDSequence(UUIDGenerator.generateUUID(), true,"");
+		final var reference = UUIDFormatter.formatUUIDSequence(UUIDGenerator.generateUUID(), true,"");
 		createOwnerCommand.setReference(reference);
-		LOGGER.info(String.format("Attributing %s as a reference for owner %s", reference, createOwnerCommand));
-		LOGGER.info(String.format("Owner %s has %d pals", createOwnerCommand.getEmail(),
+		
+		LOGGER.log(Level.INFO, () -> String.format("Attributing %s as a reference for owner %s", reference,
+											createOwnerCommand));
+		LOGGER.log(Level.INFO, () -> String.format("Owner %s has %d pals", createOwnerCommand.getEmail(),
 								  createOwnerCommand.getPals().size()));
 		
 		if(!createOwnerCommand.getPals().isEmpty()){
 			for(CreatePalCommand pal: createOwnerCommand.getPals()){
-				reference = UUIDFormatter.formatUUIDSequence(UUIDGenerator.generateUUID(), true,"");
-				LOGGER.info(String.format("Attributing %s as a reference for pal %s", reference, createOwnerCommand));
+				final var palReference = UUIDFormatter.formatUUIDSequence(UUIDGenerator.generateUUID(), true,"");
+				LOGGER.info(() -> String.format("Attributing %s as a reference for pal %s", palReference,
+												pal));
 				pal.setReference(reference);
 			}
 			createOwnerOut.createOwners(createOwnerCommand);
