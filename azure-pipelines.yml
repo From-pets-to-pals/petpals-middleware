@@ -72,7 +72,7 @@ stages:
       displayName: Fetch additional repos
       inputs:
         script: |
-          cd $(Build.SourcesDirectory)/$(APP_NAME)/pom.xml
+          cd $(Build.SourcesDirectory)/$(APP_NAME)
           git show-ref
     - task: Maven@4
       condition: eq(variables['Build.SourceBranchName'], 'main')
