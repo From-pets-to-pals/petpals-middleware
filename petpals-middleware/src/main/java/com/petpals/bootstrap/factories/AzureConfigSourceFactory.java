@@ -19,6 +19,8 @@ public class AzureConfigSourceFactory implements ConfigSourceFactory {
 	private static final String ISSUER = "mp.jwt.verify.issuer";
 	private static final String PALS_API_KEY = "pals.api.key";
 	private static final String CAREGIVERS_API_KEY = "caregivers.api.key";
+	private static final String MIDDLEWARE_API_KEY = "middleware.api.key";
+	
 	@Override
 	public Iterable<ConfigSource> getConfigSources(final ConfigSourceContext context) {
 		final ConfigValue caregiversApiKey = context.getValue(CAREGIVERS_API_KEY);
@@ -38,8 +40,10 @@ public class AzureConfigSourceFactory implements ConfigSourceFactory {
 												.buildClient();
 			conf.put(CAREGIVERS_API_KEY,secretClient.getSecret("CAREGIVERS-API-KEY").getValue());
 			conf.put(PALS_API_KEY,secretClient.getSecret("PALS-API-KEY").getValue());
+			conf.put(MIDDLEWARE_API_KEY,secretClient.getSecret("MIDDLEWARE-API-KEY").getValue());
 			conf.put(CLAIMS,secretClient.getSecret("CLAIMS-ORIGIN").getValue());
 			conf.put(ISSUER,secretClient.getSecret("TOKEN-ISSUER").getValue());
+			
 			return Collections.singletonList(new PropertiesConfigSource(conf,null, getPriority().getAsInt()));
 		}
 		conf.put(CAREGIVERS_API_KEY,caregiversApiKey.getValue());

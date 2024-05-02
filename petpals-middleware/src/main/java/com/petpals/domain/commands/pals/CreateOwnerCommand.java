@@ -8,17 +8,27 @@ import java.util.List;
 import java.util.Objects;
 
 public final class CreateOwnerCommand {
-	private final @Email String email;
-	private final @NotBlank String deviceId;
+	private  @Email String email;
+	private  @NotBlank String deviceId;
 	private @NotBlank String reference;
-	private final @NotBlank String location;
-	private final @NotNull List<CreatePalCommand> pals;
+	private  @NotBlank String location;
+	private  @NotNull List<CreatePalCommand> pals;
+	
+	public CreateOwnerCommand() {
+	}
 	
 	public CreateOwnerCommand(@Email String email, @NotBlank String deviceId, @NotBlank String reference,
-					@NotBlank String location, @NotNull List<CreatePalCommand> pals) {
+							  @NotBlank String location, @NotNull List<CreatePalCommand> pals) {
 		this.email = email;
 		this.deviceId = deviceId;
 		this.reference = reference;
+		this.location = location;
+		this.pals = pals;
+	}
+	
+	public CreateOwnerCommand(String email, String deviceId, String location, List<CreatePalCommand> pals) {
+		this.email = email;
+		this.deviceId = deviceId;
 		this.location = location;
 		this.pals = pals;
 	}
@@ -27,8 +37,16 @@ public final class CreateOwnerCommand {
 		return email;
 	}
 	
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
 	public String getDeviceId() {
 		return deviceId;
+	}
+	
+	public void setDeviceId(String deviceId) {
+		this.deviceId = deviceId;
 	}
 	
 	public String getReference() {
@@ -43,8 +61,16 @@ public final class CreateOwnerCommand {
 		return location;
 	}
 	
+	public void setLocation(String location) {
+		this.location = location;
+	}
+	
 	public List<CreatePalCommand> getPals() {
 		return pals;
+	}
+	
+	public void setPals(List<CreatePalCommand> pals) {
+		this.pals = pals;
 	}
 	
 	@Override

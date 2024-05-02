@@ -1,12 +1,11 @@
 package com.petpals.domain.commands.pals;
 
-import com.petpals.domain.model.PalIdentityInformation;
-import com.petpals.domain.model.PalMeasurement;
-import com.petpals.domain.model.PalMedicalInformation;
-import com.petpals.shared.enums.Species;
-import jakarta.validation.constraints.*;
+import com.petpals.shared.model.PalIdentityInformation;
+import com.petpals.shared.model.PalMeasurement;
+import com.petpals.shared.model.PalMedicalInformation;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
-import java.util.Date;
 import java.util.Objects;
 
 public final class CreatePalCommand {
@@ -20,6 +19,15 @@ public final class CreatePalCommand {
 	}
 	
 	public CreatePalCommand(PalMedicalInformation palMedicalInformation, PalMeasurement palMeasurement, PalIdentityInformation palIdentityInformation) {
+		this.palMedicalInformation = palMedicalInformation;
+		this.palMeasurement = palMeasurement;
+		this.palIdentityInformation = palIdentityInformation;
+	}
+	
+	public CreatePalCommand(String reference, PalMedicalInformation palMedicalInformation,
+							PalMeasurement palMeasurement,
+							PalIdentityInformation palIdentityInformation) {
+		this.reference = reference;
 		this.palMedicalInformation = palMedicalInformation;
 		this.palMeasurement = palMeasurement;
 		this.palIdentityInformation = palIdentityInformation;

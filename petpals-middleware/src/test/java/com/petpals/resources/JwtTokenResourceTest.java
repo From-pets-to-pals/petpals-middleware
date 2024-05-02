@@ -3,6 +3,7 @@ package com.petpals.resources;
 import com.petpals.domain.ports.in.JwtTokenGeneratorPort;
 import io.quarkus.test.InjectMock;
 import io.quarkus.test.junit.QuarkusTest;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -11,6 +12,8 @@ import static org.hamcrest.CoreMatchers.is;
 
 @QuarkusTest
 class JwtTokenResourceTest {
+	@ConfigProperty(name="middleware.api.key")
+	public String apiKey;
 	static final String email = "sa.bennaceur@test.com";
 	static final String caregiverType = "Groomers";
 	static final String response = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9" +
@@ -32,7 +35,7 @@ class JwtTokenResourceTest {
 		Mockito.when(jwtTokenGeneratorPort.getToken(email,caregiverType)).thenReturn(response);
 		
 		given()
-				.headers("API-KEY", "pals")
+				.headers("API-KEY", apiKey)
 				.when().get(String.format("/token/%s/%s", email, caregiverType))
 				.then()
 				.statusCode(200)

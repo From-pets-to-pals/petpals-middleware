@@ -9,7 +9,7 @@ import org.eclipse.microprofile.rest.client.ext.ClientHeadersFactory;
 
 @ApplicationScoped
 public class PalsClientConfigurationFactory implements ClientHeadersFactory {
-	@ConfigProperty(name = "caregivers.api.key")
+	@ConfigProperty(name = "pals.api.key")
 	String apiKey;
 	@Override
 	public MultivaluedMap<String, String> update(MultivaluedMap<String, String> incomingHeaders, MultivaluedMap<String, String> clientOutgoingHeaders) {

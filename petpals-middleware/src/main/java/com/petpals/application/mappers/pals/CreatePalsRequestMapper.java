@@ -1,4 +1,4 @@
-package com.petpals.application.mappers;
+package com.petpals.application.mappers.pals;
 
 import com.petpals.application.dto.CreatePalRequest;
 import com.petpals.domain.commands.pals.CreatePalCommand;

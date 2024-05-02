@@ -32,6 +32,8 @@ public class RequestInterceptor implements ContainerRequestFilter  {
 	}
 	@ConfigProperty(name = "claims.origin")
 	public String origin;
+	@ConfigProperty(name = "middleware.api.key")
+	public String middlewareApiKey;
 	@Override
 	public void filter(ContainerRequestContext containerRequestContext) {
 		LOGGER.info(String.format("Filtering incoming request with uri: %s", info.getPath()));
@@ -39,13 +41,13 @@ public class RequestInterceptor implements ContainerRequestFilter  {
 		 if(authorizedPath.stream().anyMatch(path -> info.getPath().startsWith(path)) || info.getPath().equals(
 				 "/caregivers") || info.getPath().equals("/owners")){
 			 if(containerRequestContext.getHeaderString(HEADER_NAME) == null || !containerRequestContext.getHeaderString(
-					 HEADER_NAME).equals("pals")) {
+					 HEADER_NAME).equals(middlewareApiKey)) {
 				 throw new PetPalsExceptions(ExceptionsEnum.MIDDLEWARE_MISSING_API_KEY);
 			 }
 			 return;
 		 }
 		if(containerRequestContext.getHeaderString(HEADER_NAME) != null && !containerRequestContext.getHeaderString(
-				HEADER_NAME).equals("pals")) {
+				HEADER_NAME).equals(middlewareApiKey)) {
 			throw new PetPalsExceptions(ExceptionsEnum.MIDDLEWARE_MISSING_API_KEY);
 		}
 		if(containerRequestContext.getHeaderString(HEADER_NAME) == null && hasJwt()) {

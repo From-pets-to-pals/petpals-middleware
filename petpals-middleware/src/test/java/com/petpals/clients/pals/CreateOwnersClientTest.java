@@ -4,10 +4,15 @@ import com.petpals.clients.dto.pals.NewOwner;
 import com.petpals.clients.endpoints.pals.CreateOwnersClient;
 import com.petpals.clients.mappers.pals.CreateOwnerMapper;
 import com.petpals.domain.commands.pals.CreateOwnerCommand;
+import com.petpals.domain.commands.pals.CreatePalCommand;
 import com.petpals.domain.ports.out.CreateOwnerOut;
 import com.petpals.shared.entities.uuid.UUIDFormatter;
 import com.petpals.shared.entities.uuid.UUIDGenerator;
+import com.petpals.shared.enums.Species;
 import com.petpals.shared.errorhandling.PetPalsExceptions;
+import com.petpals.shared.model.PalIdentityInformation;
+import com.petpals.shared.model.PalMeasurement;
+import com.petpals.shared.model.PalMedicalInformation;
 import io.quarkus.test.InjectMock;
 import io.quarkus.test.junit.QuarkusTest;
 import jakarta.inject.Inject;
@@ -20,6 +25,8 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 @QuarkusTest
 class CreateOwnersClientTest {
@@ -46,7 +53,31 @@ class CreateOwnersClientTest {
 				"OPPO X59",
 				reference,
 				"FRANCE",
-				new ArrayList<>()
+				List.of(new CreatePalCommand(
+						reference,
+						new PalMedicalInformation(
+								true,
+								new ArrayList<>(),
+								new Date(),
+								new Date(),
+								false
+						),
+						new PalMeasurement(
+								29.0,
+								53.5
+						),
+						new PalIdentityInformation(
+								"Ashe",
+								"Ashe",
+								new Date(),
+								true,
+								Species.DOG,
+								"Husky",
+								"250261245784512",
+								true)
+								
+						)
+				)
 		);
 		newOwner = createOwnerMapper.fromDomain(createOwnerCommand);
 		
