@@ -73,6 +73,7 @@ stages:
       inputs:
         script: |
           cd $(Build.SourcesDirectory)/$(APP_NAME)
+          echo $(Build.SourceBranchName)
           git pull --all
           git show-ref
     - task: Maven@4
