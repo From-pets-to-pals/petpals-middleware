@@ -54,7 +54,7 @@ stages:
       inputs:
         mavenPomFile: '$(Build.SourcesDirectory)/$(APP_NAME)/pom.xml'
         goals: 'clean package'
-        options: '-DSECRET=$(SECRET) -DTENANT-ID=$(TENANT-ID) -DCLIENT-ID=$(CLIENT-ID) -DPUBLIC-KEY=$(PUBLIC-KEY) -DPRIVATE-KEY=$(PRIVATE-KEY) -DVAULT=$(VAULT)'
+        options: '-DSECRET=$(SECRET) -DTENANT-ID=$(TENANT-ID) -DCLIENT-ID=$(CLIENT-ID) -DPUBLIC-KEY=$(PUBLIC-KEY) -DPRIVATE-KEY=$(PRIVATE-KEY) -DVAULT=$(VAULT)  -Dsonar.branch.name=$(Build.SourceBranchName)'
         publishJUnitResults: true
         testResultsFiles: '**/surefire-reports/TEST-*.xml'
         javaHomeOption: 'JDKVersion'
