@@ -1,6 +1,6 @@
 package com.petpals.application.entrypoints.pals;
 
-import com.petpals.application.dto.CreateOwnerRequest;
+import com.petpals.application.dto.pals.CreateOwnerRequest;
 import com.petpals.application.mappers.pals.CreateOwnerRequestMapper;
 import com.petpals.domain.ports.in.CreateOwnerIn;
 import jakarta.validation.Valid;

@@ -2,11 +2,9 @@ package com.petpals.resources.pals;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.petpals.application.dto.CreateOwnerRequest;
-import com.petpals.application.dto.CreatePalRequest;
+import com.petpals.application.dto.pals.CreateOwnerRequest;
+import com.petpals.application.dto.pals.CreatePalRequest;
 import com.petpals.application.mappers.pals.CreateOwnerRequestMapper;
-import com.petpals.domain.commands.pals.CreateOwnerCommand;
-import com.petpals.domain.commands.pals.CreatePalCommand;
 import com.petpals.domain.ports.in.CreateOwnerIn;
 import com.petpals.shared.enums.Species;
 import com.petpals.shared.model.PalIdentityInformation;

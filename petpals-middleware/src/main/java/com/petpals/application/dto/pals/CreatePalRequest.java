@@ -1,4 +1,4 @@
-package com.petpals.application.dto;
+package com.petpals.application.dto.pals;
 
 
 import com.petpals.shared.model.PalIdentityInformation;

@@ -1,6 +1,6 @@
 package com.petpals.application.mappers.pals;
 
-import com.petpals.application.dto.CreateOwnerRequest;
+import com.petpals.application.dto.pals.CreateOwnerRequest;
 import com.petpals.domain.commands.pals.CreateOwnerCommand;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

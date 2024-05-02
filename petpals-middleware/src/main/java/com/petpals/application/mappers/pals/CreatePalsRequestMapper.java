@@ -1,6 +1,6 @@
 package com.petpals.application.mappers.pals;
 
-import com.petpals.application.dto.CreatePalRequest;
+import com.petpals.application.dto.pals.CreatePalRequest;
 import com.petpals.domain.commands.pals.CreatePalCommand;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
