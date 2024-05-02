@@ -1,8 +1,8 @@
-package com.petpals.clients;
+package com.petpals.clients.caregivers;
 
-import com.petpals.clients.dto.CreateCaregiver;
-import com.petpals.clients.dto.Days;
-import com.petpals.clients.endpoints.SaveCaregiversClient;
+import com.petpals.clients.dto.caregivers.CreateCaregiver;
+import com.petpals.clients.dto.caregivers.Days;
+import com.petpals.clients.endpoints.caregivers.SaveCaregiversClient;
 import com.petpals.domain.ports.out.SaveCaregiversOut;
 import com.petpals.shared.entities.uuid.UUIDFormatter;
 import com.petpals.shared.entities.uuid.UUIDGenerator;
@@ -16,7 +16,6 @@ import org.eclipse.microprofile.rest.client.inject.RestClient;
 import org.jboss.resteasy.client.exception.ResteasyClientErrorException;
 import org.jboss.resteasy.client.exception.ResteasyWebApplicationException;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;

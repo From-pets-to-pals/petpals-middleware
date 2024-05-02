@@ -6,13 +6,11 @@ import jakarta.ws.rs.core.MultivaluedHashMap;
 import jakarta.ws.rs.core.MultivaluedMap;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.eclipse.microprofile.rest.client.ext.ClientHeadersFactory;
-import org.jboss.logging.Logger;
 
 @ApplicationScoped
-public class CaregiversClientConfigurationFactory implements ClientHeadersFactory {
-	@ConfigProperty(name = "caregivers.api.key")
+public class PalsClientConfigurationFactory implements ClientHeadersFactory {
+	@ConfigProperty(name = "pals.api.key")
 	String apiKey;
-	
 	@Override
 	public MultivaluedMap<String, String> update(MultivaluedMap<String, String> incomingHeaders, MultivaluedMap<String, String> clientOutgoingHeaders) {
 		MultivaluedMap<String, String> result = new MultivaluedHashMap<>();
@@ -24,5 +22,4 @@ public class CaregiversClientConfigurationFactory implements ClientHeadersFactor
 		}
 		return result;
 	}
-	
 }

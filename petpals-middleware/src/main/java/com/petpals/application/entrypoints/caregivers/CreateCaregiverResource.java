@@ -1,16 +1,19 @@
-package com.petpals.application.entrypoints;
+package com.petpals.application.entrypoints.caregivers;
 
-import com.petpals.clients.dto.CreateCaregiver;
+import com.petpals.clients.dto.caregivers.CreateCaregiver;
 import com.petpals.domain.ports.in.SaveCaregiversIn;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
+import org.eclipse.microprofile.openapi.annotations.security.SecurityRequirement;
 import org.jboss.logging.Logger;
 
 
 @Path("/caregivers")
+@SecurityRequirement(name = "api_key")
+
 public class CreateCaregiverResource {
 	private static final Logger LOGGER = Logger.getLogger(CreateCaregiverResource.class);
 	

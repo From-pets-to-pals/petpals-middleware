@@ -1,7 +1,7 @@
-package com.petpals.clients.services;
+package com.petpals.clients.services.caregivers;
 
-import com.petpals.clients.dto.CreateCaregiver;
-import com.petpals.clients.endpoints.SaveCaregiversClient;
+import com.petpals.clients.dto.caregivers.CreateCaregiver;
+import com.petpals.clients.endpoints.caregivers.SaveCaregiversClient;
 import com.petpals.domain.ports.out.SaveCaregiversOut;
 import com.petpals.shared.errorhandling.ExceptionsEnum;
 import com.petpals.shared.errorhandling.PetPalsExceptions;
@@ -23,13 +23,13 @@ public class SaveCaregiversService implements SaveCaregiversOut {
 	@Override
 	public String createCaregiver(CreateCaregiver createCaregiver) {
 		try {
-		return saveCaregiversClient.createCaregiver(createCaregiver);
-		
+			return saveCaregiversClient.createCaregiver(createCaregiver);
+			
 		} catch (ResteasyWebApplicationException e) {
 			logger.info(e.toString());
 			throw new PetPalsExceptions(
 					ExceptionsEnum.CAREGIVERS_OFFLINE_REST_CLIENT_EXCEPTION);
-		} catch (ResteasyClientErrorException e){
+		} catch (ResteasyClientErrorException e) {
 			logger.info(e.toString());
 			throw new PetPalsExceptions(
 					ExceptionsEnum.CAREGIVERS_MISSING_API_KEY);

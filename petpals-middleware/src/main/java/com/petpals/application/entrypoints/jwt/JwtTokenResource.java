@@ -1,4 +1,4 @@
-package com.petpals.application.entrypoints;
+package com.petpals.application.entrypoints.jwt;
 
 import com.petpals.domain.services.JwtTokenGenerator;
 import jakarta.annotation.security.PermitAll;

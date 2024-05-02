@@ -1,6 +1,6 @@
-package com.petpals.clients.services;
+package com.petpals.clients.services.caregivers;
 
-import com.petpals.clients.endpoints.CaregiversHealthCheckClient;
+import com.petpals.clients.endpoints.caregivers.CaregiversHealthCheckClient;
 import com.petpals.domain.ports.out.CaregiversHealthCheckOut;
 import com.petpals.shared.errorhandling.ExceptionsEnum;
 import com.petpals.shared.errorhandling.PetPalsExceptions;

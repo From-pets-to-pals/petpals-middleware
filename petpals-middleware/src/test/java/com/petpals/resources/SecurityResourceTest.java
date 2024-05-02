@@ -3,6 +3,7 @@ package com.petpals.resources;
 import com.petpals.domain.ports.in.CaregiversHealthCheckIn;
 import io.quarkus.test.InjectMock;
 import io.quarkus.test.junit.QuarkusTest;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -11,6 +12,9 @@ import static org.hamcrest.CoreMatchers.is;
 
 @QuarkusTest
 class SecurityResourceTest {
+	
+	@ConfigProperty(name = "middleware.api.key")
+	private String middlewareApiKey;
 	static final String name = "something";
 	@InjectMock
 	CaregiversHealthCheckIn caregiversHealthCheckClient;
@@ -29,7 +33,7 @@ class SecurityResourceTest {
 		
 		Mockito.when(caregiversHealthCheckClient.helloYou(name)).thenReturn("Hello "+ name);
 		given()
-				.header("API-KEY", "pals")
+				.header("API-KEY", middlewareApiKey)
 				.when().get("/hello/".concat(name))
 				.then()
 				.statusCode(200)
@@ -43,7 +47,7 @@ class SecurityResourceTest {
 	void shouldReturnHelloWhenProvidingCredentials() {
 		Mockito.when(caregiversHealthCheckClient.helloYou("nono")).thenReturn("Hello ".concat("nono"));
 		given()
-				.header("API-KEY", "pals")
+				.header("API-KEY", middlewareApiKey)
 				.when().get("/hello/nono")
 				.then()
 				.statusCode(200)

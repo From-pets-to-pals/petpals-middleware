@@ -1,8 +1,9 @@
-package com.petpals.clients.endpoints;
+package com.petpals.clients.endpoints.caregivers;
 
 import com.petpals.bootstrap.factories.CaregiversClientConfigurationFactory;
-import com.petpals.clients.dto.CreateCaregiver;
+import com.petpals.clients.dto.caregivers.CreateCaregiver;
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.RequestScoped;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
@@ -13,7 +14,7 @@ import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
 @RegisterRestClient(baseUri = "https://petpals-caregivers.azurewebsites.net/")
 @RegisterClientHeaders(CaregiversClientConfigurationFactory.class)
-@ApplicationScoped
+@RequestScoped
 @Path("/caregivers")
 public interface SaveCaregiversClient {
 	@POST
