@@ -40,6 +40,7 @@ class CreateOwnerResourceTest {
 				"sa.bennaceur@gmail.com",
 				"OPPO X59",
 				"0764017528",
+				"FRANCE",
 				List.of(new CreatePalRequest(
 								new PalMedicalInformation(
 										true,

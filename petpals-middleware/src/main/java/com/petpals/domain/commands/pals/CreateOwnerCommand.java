@@ -8,13 +8,23 @@ import java.util.List;
 import java.util.Objects;
 
 public final class CreateOwnerCommand {
-	private  @Email String email;
-	private  @NotBlank String deviceId;
-	private @NotBlank String reference;
-	private  @NotBlank String location;
-	private  @NotNull List<CreatePalCommand> pals;
+	private String email;
+	private String username;
+	private  String deviceId;
+	private String reference;
+	private  String location;
+	private  List<CreatePalCommand> pals;
 	
 	public CreateOwnerCommand() {
+	}
+	
+	public CreateOwnerCommand(String email, String username, String deviceId, String reference, String location, List<CreatePalCommand> pals) {
+		this.email = email;
+		this.username = username;
+		this.deviceId = deviceId;
+		this.reference = reference;
+		this.location = location;
+		this.pals = pals;
 	}
 	
 	public CreateOwnerCommand(@Email String email, @NotBlank String deviceId, @NotBlank String reference,

@@ -6,6 +6,6 @@ import jakarta.validation.constraints.NotNull;
 
 import java.util.List;
 
-public record CreateOwnerRequest(@Email String email, @NotBlank String deviceId,
+public record CreateOwnerRequest(@Email String email, @NotBlank String deviceId, @NotBlank String username,
 								 @NotBlank String location, @NotNull List<CreatePalRequest> pals) {
 }
