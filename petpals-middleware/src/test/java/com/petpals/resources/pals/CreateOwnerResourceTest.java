@@ -13,6 +13,9 @@ import com.petpals.shared.model.PalMedicalInformation;
 import io.quarkus.test.InjectMock;
 import io.quarkus.test.junit.QuarkusTest;
 import jakarta.inject.Inject;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -86,6 +89,28 @@ class CreateOwnerResourceTest {
 	}
 	
 	@Test
+	void testCreateCaregiverBadRequest() throws JsonProcessingException {
+		ObjectMapper mapper = new ObjectMapper();
+		CreateOwnerBadRequest badRequest = new CreateOwnerBadRequest(
+				12,
+				"sa.bennaceur@gmail.com",
+				"OPPOx59",
+				"Sidou",
+				"PARIS_FR",
+				new ArrayList<>()
+		);
+		var json = mapper.writeValueAsString(badRequest);
+		given()
+				.headers("API-KEY", apiKey)
+				.header("Authorization", "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJwZXRwYWxzIiwidXBuIjoic2EuYmVubmFjZXVyQGdtYWlsLmNvbSIsImdyb3VwcyI6WyJDYXJlZ2l2ZXJzIiwiT3duZXJzIl0sImV4cCI6MTcxNTEzMzgyMCwiYWRkcmVzcyI6InBldHBhbHMtYXBwcyIsImlhdCI6MTcxMzkyNDIyMCwianRpIjoiMzA3ZTY3Y2QtZDQ1Zi00OWMyLWFlZTEtZmZiNTI5MWZmOWVkIn0.qnQ1znsWaqfO-mU0LLA5EwSJ1L8Ko01-Qx5lF5WeZUkwk_nmh0arO16CtsJmmwi-pFrbipnKmlp9z9sLevoIrqb9ldQ7DQPDgbF0QCXQjGJK9BQjqieIyw9lLXgLlwn-VZv-tG74JvPnUxXOZpWit1MPBSwuWqfHwBe_McBV9pBKOwZ33Gx_c2SGjjUCel1ChCmAx0VXkEdivm-tcAzeOmPyFcphMdNB22CyiqrETtegfKH3eBAa81n4s0kFOjVJ-B6uFIQKzOwHnvKbg7OdxHDlXSVIoUaE4e1WEv2uR2NZTSVlrP9KIO24zg6TKMdf1vKfIod77AAASfmo21cBVA")
+				.header("Content-Type", "application/json")
+				.body(json)
+				.when().post("/owners")
+				.then()
+				.statusCode(400);
+	}
+	
+	@Test
 	void testCreateCaregiverInvalidApiKey() throws JsonProcessingException {
 		
 		ObjectMapper mapper = new ObjectMapper();
@@ -112,5 +137,12 @@ class CreateOwnerResourceTest {
 				.when().post("/owners")
 				.then()
 				.statusCode(401);
+	}
+	
+	public record CreateOwnerBadRequest (int illegalProperty, @Email String email, @NotBlank String deviceId,
+										 @NotBlank String username,
+										 @NotBlank String location, @NotNull List<CreatePalRequest> pals) {
+		
+		
 	}
 }

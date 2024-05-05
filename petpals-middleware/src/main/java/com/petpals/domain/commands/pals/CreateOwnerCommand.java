@@ -83,33 +83,37 @@ public final class CreateOwnerCommand {
 		this.pals = pals;
 	}
 	
+	public String getUsername() {
+		return username;
+	}
+	
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	
 	@Override
-	public boolean equals(Object obj) {
-		if (obj == this) return true;
-		if (obj == null || obj.getClass() != this.getClass()) return false;
-		var that = (CreateOwnerCommand) obj;
-		return Objects.equals(this.email, that.email) &&
-					   Objects.equals(this.deviceId, that.deviceId) &&
-					   Objects.equals(this.reference, that.reference) &&
-					   Objects.equals(this.location, that.location) &&
-					   Objects.equals(this.pals, that.pals);
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		CreateOwnerCommand that = (CreateOwnerCommand) o;
+		return Objects.equals(email, that.email) && Objects.equals(username, that.username) && Objects.equals(deviceId, that.deviceId) && Objects.equals(reference, that.reference) && Objects.equals(location, that.location) && Objects.equals(pals, that.pals);
 	}
 	
 	@Override
 	public int hashCode() {
-		return Objects.hash(email, deviceId, reference, location, pals);
+		return Objects.hash(email, username, deviceId, reference, location, pals);
 	}
 	
 	@Override
 	public String toString() {
-		return "NewOwner[" +
-					   "email=" + email + ", " +
-					   "deviceId=" + deviceId + ", " +
-					   "reference=" + reference + ", " +
-					   "location=" + location + ", " +
-					   "pals=[" + pals + ']';
+		return "CreateOwnerCommand{" +
+					   "email='" + email + '\'' +
+					   ", username='" + username + '\'' +
+					   ", deviceId='" + deviceId + '\'' +
+					   ", reference='" + reference + '\'' +
+					   ", location='" + location + '\'' +
+					   ", pals=" + pals +
+					   '}';
 	}
-	
-	
 }
 

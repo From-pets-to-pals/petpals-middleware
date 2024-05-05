@@ -14,7 +14,7 @@ import static org.hamcrest.CoreMatchers.is;
 class SecurityResourceTest {
 	
 	@ConfigProperty(name = "middleware.api.key")
-	private String middlewareApiKey;
+	String middlewareApiKey;
 	static final String name = "something";
 	@InjectMock
 	CaregiversHealthCheckIn caregiversHealthCheckClient;

@@ -11,6 +11,5 @@ public class JacksonExceptionHandler implements ExceptionMapper<UnrecognizedProp
 	@Override
 	public Response toResponse(UnrecognizedPropertyException e) {
 		return Response.status(Response.Status.fromStatusCode(HttpStatus.SC_BAD_REQUEST)).entity(e.getMessage()).build();
-		
 	}
 }
