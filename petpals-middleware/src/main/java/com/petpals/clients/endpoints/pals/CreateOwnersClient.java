@@ -1,9 +1,7 @@
 package com.petpals.clients.endpoints.pals;
 
-import com.petpals.bootstrap.factories.CaregiversClientConfigurationFactory;
 import com.petpals.bootstrap.factories.PalsClientConfigurationFactory;
 import com.petpals.clients.dto.pals.NewOwner;
-import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.POST;

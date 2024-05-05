@@ -42,7 +42,19 @@ class SecurityResourceTest {
 				));
 	}
 	
-	
+	@Test
+	void shouldSayHello() {
+		
+		Mockito.when(caregiversHealthCheckClient.hello()).thenReturn("Hello RestEASY");
+		given()
+				.header("API-KEY", middlewareApiKey)
+				.when().get("/hello")
+				.then()
+				.statusCode(200)
+				.body(is(
+						"Hello RestEASY"
+				));
+	}
 	@Test
 	void shouldReturnHelloWhenProvidingCredentials() {
 		Mockito.when(caregiversHealthCheckClient.helloYou("nono")).thenReturn("Hello ".concat("nono"));

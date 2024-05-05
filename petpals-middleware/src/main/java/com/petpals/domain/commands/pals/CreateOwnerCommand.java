@@ -26,23 +26,6 @@ public final class CreateOwnerCommand {
 		this.location = location;
 		this.pals = pals;
 	}
-	
-	public CreateOwnerCommand(@Email String email, @NotBlank String deviceId, @NotBlank String reference,
-							  @NotBlank String location, @NotNull List<CreatePalCommand> pals) {
-		this.email = email;
-		this.deviceId = deviceId;
-		this.reference = reference;
-		this.location = location;
-		this.pals = pals;
-	}
-	
-	public CreateOwnerCommand(String email, String deviceId, String location, List<CreatePalCommand> pals) {
-		this.email = email;
-		this.deviceId = deviceId;
-		this.location = location;
-		this.pals = pals;
-	}
-	
 	public String getEmail() {
 		return email;
 	}
