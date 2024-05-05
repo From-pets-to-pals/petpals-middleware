@@ -16,9 +16,11 @@ import org.jboss.resteasy.client.exception.ResteasyWebApplicationException;
 public class SaveCaregiversService implements SaveCaregiversOut {
 	private final Logger logger = Logger.getLogger(SaveCaregiversService.class);
 	
-	@RestClient
-	@Inject
 	SaveCaregiversClient saveCaregiversClient;
+	@Inject
+	public SaveCaregiversService(@RestClient SaveCaregiversClient saveCaregiversClient) {
+		this.saveCaregiversClient = saveCaregiversClient;
+	}
 	
 	@Override
 	public String createCaregiver(CreateCaregiver createCaregiver) {

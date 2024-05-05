@@ -7,7 +7,6 @@ import com.petpals.domain.ports.out.CreateOwnerOut;
 import com.petpals.shared.errorhandling.ExceptionsEnum;
 import com.petpals.shared.errorhandling.PetPalsExceptions;
 import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.inject.Inject;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 import org.jboss.logging.Logger;
 import org.jboss.resteasy.client.exception.ResteasyClientErrorException;
@@ -16,12 +15,11 @@ import org.jboss.resteasy.client.exception.ResteasyWebApplicationException;
 @ApplicationScoped
 public class CreateOwnersService implements CreateOwnerOut {
 	private static final Logger LOGGER = Logger.getLogger(CreateOwnersService.class);
-	@Inject
-	@RestClient
 	CreateOwnersClient createOwnersClient;
 	CreateOwnerMapper createOwnerMapper;
 	
-	public CreateOwnersService(CreateOwnerMapper createOwnerMapper) {
+	public CreateOwnersService(@RestClient CreateOwnersClient createOwnersClient, CreateOwnerMapper createOwnerMapper) {
+		this.createOwnersClient = createOwnersClient;
 		this.createOwnerMapper = createOwnerMapper;
 	}
 	

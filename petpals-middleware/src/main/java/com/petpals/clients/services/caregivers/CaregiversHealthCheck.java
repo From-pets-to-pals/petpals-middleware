@@ -6,7 +6,6 @@ import com.petpals.shared.errorhandling.ExceptionsEnum;
 import com.petpals.shared.errorhandling.PetPalsExceptions;
 import io.quarkus.cache.CacheResult;
 import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.inject.Inject;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 import org.jboss.logging.Logger;
 import org.jboss.resteasy.client.exception.ResteasyClientErrorException;
@@ -16,10 +15,12 @@ import org.jboss.resteasy.client.exception.ResteasyWebApplicationException;
 public class CaregiversHealthCheck implements CaregiversHealthCheckOut {
 	private final Logger logger = Logger.getLogger(CaregiversHealthCheck.class);
 	
-	@Inject
-	@RestClient
+	
 	CaregiversHealthCheckClient caregiversHealthCheckClient;
 	
+	public CaregiversHealthCheck(@RestClient CaregiversHealthCheckClient caregiversHealthCheckClient) {
+		this.caregiversHealthCheckClient = caregiversHealthCheckClient;
+	}
 	
 	@Override
 	@CacheResult(cacheName = "hello-cache")
