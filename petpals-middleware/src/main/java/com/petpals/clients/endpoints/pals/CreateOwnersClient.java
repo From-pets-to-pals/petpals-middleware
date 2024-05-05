@@ -11,7 +11,7 @@ import jakarta.ws.rs.core.MediaType;
 import org.eclipse.microprofile.rest.client.annotation.RegisterClientHeaders;
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
-@RegisterRestClient(baseUri = "https://petpals-pals.azurewebsites.net/")
+@RegisterRestClient(baseUri = "http://petpals-pals.azurewebsites.net/")
 @RegisterClientHeaders(PalsClientConfigurationFactory.class)
 @RequestScoped
 @Path("/owners")

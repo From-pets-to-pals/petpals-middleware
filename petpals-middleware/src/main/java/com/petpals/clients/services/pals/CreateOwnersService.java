@@ -27,11 +27,13 @@ public class CreateOwnersService implements CreateOwnerOut {
 	public Long createOwners(CreateOwnerCommand createOwnerCommand) {
 		var newOwner = createOwnerMapper.fromDomain(createOwnerCommand);
 		try {
+			LOGGER.info("Sending create owner request to Pals" );
+			LOGGER.info(newOwner.toString());
 			return createOwnersClient.createOwner(newOwner);
 		} catch (ResteasyWebApplicationException e) {
 			LOGGER.info(e.toString());
 			throw new PetPalsExceptions(
-					ExceptionsEnum.PALS_OFFLINE_REST_CLIENT_EXCEPTION
+					ExceptionsEnum.DB_UNIQUE_KEY_OWNER_MAIL_CONSTRAINT_VIOLATION
 			);
 		} catch (ResteasyClientErrorException e) {
 			LOGGER.info(e.toString());

@@ -23,7 +23,7 @@ public class CreateOwnersService implements CreateOwnerIn {
 	}
 	
 	@Override
-	public void createOwners(CreateOwnerCommand createOwnerCommand) {
+	public String createOwners(CreateOwnerCommand createOwnerCommand) {
 		LOGGER.info("Creating owner");
 		final var reference = UUIDFormatter.formatUUIDSequence(UUIDGenerator.generateUUID(), true,"");
 		createOwnerCommand.setReference(reference);
@@ -41,6 +41,7 @@ public class CreateOwnersService implements CreateOwnerIn {
 				pal.setReference(reference);
 			}
 			createOwnerOut.createOwners(createOwnerCommand);
+			return reference;
 		} else {
 			throw new PetPalsExceptions(ExceptionsEnum.MIDDLEWARE_CREATE_OWNER_NO_PAL);
 		}

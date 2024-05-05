@@ -48,8 +48,8 @@ class CreateOwnerResourceTest {
 								new PalMedicalInformation(
 										true,
 										new ArrayList<>(),
-										new Date(),
-										new Date(),
+										null,
+										null,
 										false
 								),
 								

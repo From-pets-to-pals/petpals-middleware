@@ -27,10 +27,10 @@ public class CreateOwnerResource {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
-	public void createOwner(@Valid CreateOwnerRequest createOwnerRequest) {
+	public String createOwner(@Valid CreateOwnerRequest createOwnerRequest) {
 		if (LOGGER.isInfoEnabled()) {
 			LOGGER.info(String.format("Create owners call with owner : %s", createOwnerRequest.toString()));
 		}
-		createOwnerIn.createOwners(createOwnerRequestMapper.toCommand(createOwnerRequest));
+		return createOwnerIn.createOwners(createOwnerRequestMapper.toCommand(createOwnerRequest));
 	}
 }
