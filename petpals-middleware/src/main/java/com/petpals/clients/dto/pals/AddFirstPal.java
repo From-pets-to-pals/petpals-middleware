@@ -9,7 +9,7 @@ import java.util.List;
 public record AddFirstPal(
 		@NotBlank @Size(min = 32, max = 36) String reference,
 		@NotBlank @Size(min= 2) String name,
-		@NotBlank @Size(min=2) String shortName,
+		@NotBlank @Size(min=2) String shortname,
 		@Past Date birthDate,
 		@NotNull boolean isMale,
 		@NotNull Species specie,

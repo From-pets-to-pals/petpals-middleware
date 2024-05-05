@@ -88,8 +88,8 @@ class CreateOwnerServiceTest {
 		Assertions.assertEquals(createOwnerCommand.getDeviceId(),createOwnerCommandCaptor.getValue().getDeviceId());
 		Assertions.assertEquals(createOwnerCommand.getPals().get(0).getPalIdentityInformation().name(),
 								createOwnerCommandCaptor.getValue().getPals().get(0).getPalIdentityInformation().name());
-		Assertions.assertEquals(createOwnerCommand.getPals().get(0).getPalIdentityInformation().shortName(),
-								createOwnerCommandCaptor.getValue().getPals().get(0).getPalIdentityInformation().shortName());
+		Assertions.assertEquals(createOwnerCommand.getPals().get(0).getPalIdentityInformation().shortname(),
+								createOwnerCommandCaptor.getValue().getPals().get(0).getPalIdentityInformation().shortname());
 		Assertions.assertEquals(createOwnerCommand.getPals().get(0).getReference(),
 								createOwnerCommandCaptor.getValue().getPals().get(0).getReference());
 		Assertions.assertEquals(createOwnerCommand.getPals().get(0).getPalIdentityInformation().breed(),
@@ -104,10 +104,10 @@ class CreateOwnerServiceTest {
 								createOwnerCommandCaptor.getValue().getPals().get(0).getPalIdentityInformation().isMale());
 		Assertions.assertEquals(createOwnerCommand.getPals().get(0).getPalIdentityInformation().hasPassport(),
 								createOwnerCommandCaptor.getValue().getPals().get(0).getPalIdentityInformation().hasPassport());
-		Assertions.assertEquals(createOwnerCommand.getPals().get(0).getPalMedicalInformation().isVaccinated(),
-								createOwnerCommandCaptor.getValue().getPals().get(0).getPalMedicalInformation().isVaccinated());
-		Assertions.assertEquals(createOwnerCommand.getPals().get(0).getPalMedicalInformation().isSterilized(),
-								createOwnerCommandCaptor.getValue().getPals().get(0).getPalMedicalInformation().isSterilized());
+		Assertions.assertEquals(createOwnerCommand.getPals().get(0).getPalMedicalInformation().getIsVaccinated(),
+								createOwnerCommandCaptor.getValue().getPals().get(0).getPalMedicalInformation().getIsVaccinated());
+		Assertions.assertEquals(createOwnerCommand.getPals().get(0).getPalMedicalInformation().getIsSterilized(),
+								createOwnerCommandCaptor.getValue().getPals().get(0).getPalMedicalInformation().getIsSterilized());
 		Assertions.assertEquals(createOwnerCommand.getPals().get(0).getPalMedicalInformation().getNextVaccine(),
 								createOwnerCommandCaptor.getValue().getPals().get(0).getPalMedicalInformation().getNextVaccine());
 		Assertions.assertEquals(createOwnerCommand.getPals().get(0).getPalMedicalInformation().getNextPlannedVetApp(),

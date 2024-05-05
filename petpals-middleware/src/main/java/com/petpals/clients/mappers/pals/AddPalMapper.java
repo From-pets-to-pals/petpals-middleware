@@ -13,7 +13,7 @@ public interface AddPalMapper {
 	// Identity informations
 	
 	@Mapping(source = "palIdentityInformation.name", target = "name")
-	@Mapping(source = "palIdentityInformation.shortName", target = "shortName")
+	@Mapping(source = "palIdentityInformation.shortname", target = "shortname")
 	@Mapping(source = "palIdentityInformation.birthDate", target = "birthDate")
 	@Mapping(source = "palIdentityInformation.isMale", target = "isMale")
 	@Mapping(source = "palIdentityInformation.specie", target = "specie")
@@ -23,11 +23,11 @@ public interface AddPalMapper {
 	
 	// Medical informations
 	
-	@Mapping(source = "palMedicalInformation.vaccinated", target = "isVaccinated")
+	@Mapping(source = "palMedicalInformation.isVaccinated", target = "isVaccinated")
 	@Mapping(source = "palMedicalInformation.medicalHistory", target = "medicalHistory")
 	@Mapping(source = "palMedicalInformation.nextVaccine", target = "nextVaccine")
 	@Mapping(source = "palMedicalInformation.nextPlannedVetApp", target = "nextPlannedVetApp")
-	@Mapping(source = "palMedicalInformation.sterilized", target = "isSterilized")
+	@Mapping(source = "palMedicalInformation.isSterilized", target = "isSterilized")
 	
 	// Measurement informations
 	
