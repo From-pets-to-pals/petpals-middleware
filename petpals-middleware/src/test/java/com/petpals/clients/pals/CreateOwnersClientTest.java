@@ -59,8 +59,8 @@ class CreateOwnersClientTest {
 						new PalMedicalInformation(
 								true,
 								new ArrayList<>(),
-								new Date(),
-								new Date(),
+								null,
+								null,
 								false
 						),
 						new PalMeasurement(
@@ -70,7 +70,7 @@ class CreateOwnersClientTest {
 						new PalIdentityInformation(
 								"Ashe",
 								"Ashe",
-								new Date(),
+								null,
 								true,
 								Species.DOG,
 								"Husky",

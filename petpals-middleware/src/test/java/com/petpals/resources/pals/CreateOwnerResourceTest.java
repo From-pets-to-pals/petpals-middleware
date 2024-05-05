@@ -26,6 +26,7 @@ import java.util.Date;
 import java.util.List;
 
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.is;
 
 @QuarkusTest
 class CreateOwnerResourceTest {
@@ -56,7 +57,7 @@ class CreateOwnerResourceTest {
 								new PalIdentityInformation(
 										"Ashe",
 										"Ashe",
-										new Date(),
+										"2022-03-28",
 										true,
 										Species.DOG,
 										"Husky",
@@ -71,7 +72,7 @@ class CreateOwnerResourceTest {
 				)
 		);
 		var ownerCommand = createOwnerRequestMapper.toCommand(createOwnerRequest);
-		Mockito.doNothing().when(createOwnerIn).createOwners(ownerCommand);
+		Mockito.when(createOwnerIn.createOwners(ownerCommand)).thenReturn("123456789456123");
 	}
 	
 	@Test
@@ -85,7 +86,8 @@ class CreateOwnerResourceTest {
 				.body(json)
 				.when().post("/owners")
 				.then()
-				.statusCode(204);
+				.statusCode(200)
+				.body(is("123456789456123"));
 	}
 	
 	@Test
