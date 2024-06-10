@@ -5,6 +5,7 @@ import com.petpals.clients.endpoints.MenuOptionsClient;
 import com.petpals.domain.ports.out.MenuOptionsOut;
 import com.petpals.shared.errorhandling.ExceptionsEnum;
 import com.petpals.shared.errorhandling.PetPalsExceptions;
+import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 import org.jboss.logging.Logger;
@@ -13,6 +14,7 @@ import org.jboss.resteasy.client.exception.ResteasyWebApplicationException;
 
 import java.util.List;
 
+@ApplicationScoped
 public class MenuOptionsClientService implements MenuOptionsOut{
 	
 	private final Logger logger = Logger.getLogger(MenuOptionsClientService.class);
