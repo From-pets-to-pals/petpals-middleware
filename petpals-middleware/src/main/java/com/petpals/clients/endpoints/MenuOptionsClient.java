@@ -1,7 +1,8 @@
 package com.petpals.clients.endpoints;
 
-import com.petpals.application.dto.menus.Country;
 import com.petpals.bootstrap.factories.CaregiversClientConfigurationFactory;
+import com.petpals.shared.model.Breed;
+import com.petpals.shared.model.Country;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
@@ -21,4 +22,9 @@ public interface MenuOptionsClient {
 	@Path("/countries")
 	@Produces(MediaType.APPLICATION_JSON)
 	List<Country> getCountries();
+	
+	@GET
+	@Path("/breeds")
+	@Produces(MediaType.APPLICATION_JSON)
+	List<Breed> getBreeds();
 }

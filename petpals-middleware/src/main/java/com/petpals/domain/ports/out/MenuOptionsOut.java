@@ -1,6 +1,7 @@
 package com.petpals.domain.ports.out;
 
-import com.petpals.application.dto.menus.Country;
+
+import com.petpals.shared.model.Country;
 
 import java.util.List;
 

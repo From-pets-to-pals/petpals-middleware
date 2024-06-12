@@ -1,10 +1,10 @@
 package com.petpals.clients.services.menus;
 
-import com.petpals.application.dto.menus.Country;
 import com.petpals.clients.endpoints.MenuOptionsClient;
 import com.petpals.domain.ports.out.MenuOptionsOut;
 import com.petpals.shared.errorhandling.ExceptionsEnum;
 import com.petpals.shared.errorhandling.PetPalsExceptions;
+import com.petpals.shared.model.Country;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import org.eclipse.microprofile.rest.client.inject.RestClient;

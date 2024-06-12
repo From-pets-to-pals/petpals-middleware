@@ -1,9 +1,9 @@
 package com.petpals.clients.menus;
 
-import com.petpals.application.dto.menus.Country;
 import com.petpals.clients.endpoints.MenuOptionsClient;
 import com.petpals.domain.ports.out.MenuOptionsOut;
 import com.petpals.shared.errorhandling.PetPalsExceptions;
+import com.petpals.shared.model.Country;
 import io.quarkus.test.InjectMock;
 import io.quarkus.test.junit.QuarkusTest;
 import jakarta.inject.Inject;
