@@ -3,7 +3,7 @@ package com.petpals.clients.menus;
 import com.petpals.clients.endpoints.MenuOptionsClient;
 import com.petpals.domain.ports.out.MenuOptionsOut;
 import com.petpals.shared.errorhandling.PetPalsExceptions;
-import com.petpals.shared.model.Country;
+import com.petpals.shared.model.dto.Country;
 import io.quarkus.test.InjectMock;
 import io.quarkus.test.junit.QuarkusTest;
 import jakarta.inject.Inject;
@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @QuarkusTest
-public class MenuOptionsClientTest {
+class MenuOptionsClientTest {
 	@Inject
 	MenuOptionsOut menuOptionsOut;
 	
