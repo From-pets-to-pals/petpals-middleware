@@ -1,8 +1,8 @@
 package com.petpals.domain.commands.pals;
 
-import com.petpals.shared.model.PalIdentityInformation;
-import com.petpals.shared.model.PalMeasurement;
-import com.petpals.shared.model.PalMedicalInformation;
+import com.petpals.shared.model.dto.PalIdentityInformation;
+import com.petpals.shared.model.dto.PalMeasurement;
+import com.petpals.shared.model.dto.PalMedicalInformation;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 

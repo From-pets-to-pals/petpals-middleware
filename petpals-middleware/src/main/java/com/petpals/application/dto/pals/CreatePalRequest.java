@@ -1,9 +1,9 @@
 package com.petpals.application.dto.pals;
 
 
-import com.petpals.shared.model.PalIdentityInformation;
-import com.petpals.shared.model.PalMeasurement;
-import com.petpals.shared.model.PalMedicalInformation;
+import com.petpals.shared.model.dto.PalIdentityInformation;
+import com.petpals.shared.model.dto.PalMeasurement;
+import com.petpals.shared.model.dto.PalMedicalInformation;
 import jakarta.validation.constraints.NotNull;
 
 public record CreatePalRequest(

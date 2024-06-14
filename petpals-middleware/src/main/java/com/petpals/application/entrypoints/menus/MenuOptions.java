@@ -22,6 +22,12 @@ public class MenuOptions {
 	
 	CreateOwnerOptionsResponseMapper ownerOptionsResponseMapper;
 	
+	public MenuOptions(MenuOptionsIn menuOptionsIn, CreateCaregiverOptionsResponseMapper caregiverOptionsResponseMapper, CreateOwnerOptionsResponseMapper ownerOptionsResponseMapper) {
+		this.menuOptionsIn = menuOptionsIn;
+		this.caregiverOptionsResponseMapper = caregiverOptionsResponseMapper;
+		this.ownerOptionsResponseMapper = ownerOptionsResponseMapper;
+	}
+	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@PermitAll

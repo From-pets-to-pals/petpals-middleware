@@ -1,8 +1,8 @@
 package com.petpals.application.mappers.options;
 
 import com.petpals.application.dto.responses.CreateCaregiverOptions;
-import com.petpals.shared.model.Country;
-import com.petpals.shared.model.Specie;
+import com.petpals.shared.model.dto.Country;
+import com.petpals.shared.model.dto.Specie;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
 

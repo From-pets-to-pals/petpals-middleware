@@ -1,10 +1,11 @@
 package com.petpals.domain.ports.in;
 
 
-import com.petpals.shared.model.Breed;
-import com.petpals.shared.model.BreedWithoutSpecie;
-import com.petpals.shared.model.Country;
-import com.petpals.shared.model.Specie;
+
+import com.petpals.shared.model.dto.Breed;
+import com.petpals.shared.model.dto.BreedWithoutSpecie;
+import com.petpals.shared.model.dto.Country;
+import com.petpals.shared.model.dto.Specie;
 
 import java.util.List;
 

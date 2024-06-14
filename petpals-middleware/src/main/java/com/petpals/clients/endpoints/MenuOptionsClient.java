@@ -1,10 +1,10 @@
 package com.petpals.clients.endpoints;
 
 import com.petpals.bootstrap.factories.PalsClientConfigurationFactory;
-import com.petpals.shared.model.Breed;
-import com.petpals.shared.model.BreedWithoutSpecie;
-import com.petpals.shared.model.Country;
-import com.petpals.shared.model.Specie;
+import com.petpals.shared.model.dto.Breed;
+import com.petpals.shared.model.dto.BreedWithoutSpecie;
+import com.petpals.shared.model.dto.Country;
+import com.petpals.shared.model.dto.Specie;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
@@ -14,6 +14,7 @@ import org.eclipse.microprofile.rest.client.annotation.RegisterClientHeaders;
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
 import java.util.List;
+
 
 @RegisterRestClient(baseUri = "https://petpals-pals.azurewebsites.net/")
 @RegisterClientHeaders(PalsClientConfigurationFactory.class)

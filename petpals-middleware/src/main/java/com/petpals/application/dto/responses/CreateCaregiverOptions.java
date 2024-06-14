@@ -1,7 +1,8 @@
 package com.petpals.application.dto.responses;
 
-import com.petpals.shared.model.Country;
-import com.petpals.shared.model.Specie;
+
+import com.petpals.shared.model.dto.Country;
+import com.petpals.shared.model.dto.Specie;
 
 import java.util.List;
 
