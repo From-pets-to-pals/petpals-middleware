@@ -8,7 +8,6 @@ import com.petpals.shared.model.dto.Country;
 import com.petpals.shared.model.dto.Specie;
 import jakarta.enterprise.context.ApplicationScoped;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @ApplicationScoped

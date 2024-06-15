@@ -7,7 +7,6 @@ import com.petpals.domain.ports.out.SaveCaregiversOut;
 import com.petpals.shared.entities.uuid.UUIDFormatter;
 import com.petpals.shared.entities.uuid.UUIDGenerator;
 import com.petpals.shared.errorhandling.PetPalsExceptions;
-import com.petpals.shared.model.dto.Specie;
 import com.petpals.shared.model.enums.CaregiverTypes;
 import com.petpals.shared.model.enums.SpeciesEnum;
 import io.quarkus.test.InjectMock;
