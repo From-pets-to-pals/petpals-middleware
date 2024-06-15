@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @QuarkusTest
@@ -44,6 +45,42 @@ class MenuOptionsServiceTest {
 		Assertions.assertEquals(1, fromRepository.size());
 		Assertions.assertEquals(specie.name(), SpeciesEnum.DOG.name());
 		Mockito.verify(menuOptionsOut).getSpecies();
+		Mockito.verifyNoMoreInteractions(menuOptionsOut);
+	}
+	
+	@Test
+	void testGetBreeds() {
+		Mockito.when(menuOptionsOut.getBreeds()).thenReturn(new ArrayList<>());
+		var fromRepository  = menuOptionsIn.getBreeds();
+		Assertions.assertEquals(0, fromRepository.size());
+		Mockito.verify(menuOptionsOut).getBreeds();
+		Mockito.verifyNoMoreInteractions(menuOptionsOut);
+	}
+	
+	@Test
+	void testGetDogBreeds() {
+		Mockito.when(menuOptionsOut.getDogBreeds()).thenReturn(new ArrayList<>());
+		var fromRepository  = menuOptionsIn.getDogBreeds();
+		Assertions.assertEquals(0, fromRepository.size());
+		Mockito.verify(menuOptionsOut).getDogBreeds();
+		Mockito.verifyNoMoreInteractions(menuOptionsOut);
+	}
+	
+	@Test
+	void testGetCatBreeds() {
+		Mockito.when(menuOptionsOut.getCatBreeds()).thenReturn(new ArrayList<>());
+		var fromRepository  = menuOptionsIn.getCatBreeds();
+		Assertions.assertEquals(0, fromRepository.size());
+		Mockito.verify(menuOptionsOut).getCatBreeds();
+		Mockito.verifyNoMoreInteractions(menuOptionsOut);
+	}
+	
+	@Test
+	void testGetNacBreeds() {
+		Mockito.when(menuOptionsOut.getNacBreeds()).thenReturn(new ArrayList<>());
+		var fromRepository  = menuOptionsIn.getNacBreeds();
+		Assertions.assertEquals(0, fromRepository.size());
+		Mockito.verify(menuOptionsOut).getNacBreeds();
 		Mockito.verifyNoMoreInteractions(menuOptionsOut);
 	}
 }
