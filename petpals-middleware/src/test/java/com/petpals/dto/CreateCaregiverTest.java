@@ -2,8 +2,8 @@ package com.petpals.dto;
 
 import com.petpals.clients.dto.caregivers.CreateCaregiver;
 import com.petpals.clients.dto.caregivers.Days;
-import com.petpals.shared.enums.CaregiverTypes;
-import com.petpals.shared.enums.Species;
+import com.petpals.shared.model.enums.CaregiverTypes;
+import com.petpals.shared.model.enums.SpeciesEnum;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -11,7 +11,7 @@ class CreateCaregiverTest {
 	@Test
 	void shouldCheckObjectsIntegrity(){
 		var days = new Days[]{};
-		var species = new Species[]{};
+		var species = new SpeciesEnum[]{};
 		
 		var createCaregiver = new CreateCaregiver(
 				"Sid",

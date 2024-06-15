@@ -8,11 +8,11 @@ import com.petpals.domain.commands.pals.CreatePalCommand;
 import com.petpals.domain.ports.out.CreateOwnerOut;
 import com.petpals.shared.entities.uuid.UUIDFormatter;
 import com.petpals.shared.entities.uuid.UUIDGenerator;
-import com.petpals.shared.enums.Species;
 import com.petpals.shared.errorhandling.PetPalsExceptions;
-import com.petpals.shared.model.PalIdentityInformation;
-import com.petpals.shared.model.PalMeasurement;
-import com.petpals.shared.model.PalMedicalInformation;
+import com.petpals.shared.model.dto.PalIdentityInformation;
+import com.petpals.shared.model.dto.PalMeasurement;
+import com.petpals.shared.model.dto.PalMedicalInformation;
+import com.petpals.shared.model.enums.SpeciesEnum;
 import io.quarkus.test.InjectMock;
 import io.quarkus.test.junit.QuarkusTest;
 import jakarta.inject.Inject;
@@ -72,7 +72,7 @@ class CreateOwnersClientTest {
 								"Ashe",
 								null,
 								true,
-								Species.DOG,
+								SpeciesEnum.DOG,
 								"Husky",
 								"250261245784512",
 								true)

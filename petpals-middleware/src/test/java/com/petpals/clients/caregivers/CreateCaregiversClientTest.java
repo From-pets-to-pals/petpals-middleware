@@ -6,9 +6,10 @@ import com.petpals.clients.endpoints.caregivers.SaveCaregiversClient;
 import com.petpals.domain.ports.out.SaveCaregiversOut;
 import com.petpals.shared.entities.uuid.UUIDFormatter;
 import com.petpals.shared.entities.uuid.UUIDGenerator;
-import com.petpals.shared.enums.CaregiverTypes;
-import com.petpals.shared.enums.Species;
 import com.petpals.shared.errorhandling.PetPalsExceptions;
+import com.petpals.shared.model.dto.Specie;
+import com.petpals.shared.model.enums.CaregiverTypes;
+import com.petpals.shared.model.enums.SpeciesEnum;
 import io.quarkus.test.InjectMock;
 import io.quarkus.test.junit.QuarkusTest;
 import jakarta.inject.Inject;
@@ -41,7 +42,7 @@ class CreateCaregiversClientTest {
 				"92150",
 				"France",
 				new Days[]{},
-				new Species[]{},
+				new SpeciesEnum[]{},
 				false,
 				0.5,
 				CaregiverTypes.GROOMER,
