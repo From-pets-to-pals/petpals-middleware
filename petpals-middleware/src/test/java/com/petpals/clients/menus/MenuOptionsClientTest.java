@@ -58,7 +58,7 @@ class MenuOptionsClientTest {
 	void shouldReturnOneSpecieList(){
 		var toReturn = List.of(new Specie(SpeciesEnum.DOG.name()));
 		Mockito.when(menuOptionsClient.getSpecies()).thenReturn(toReturn);
-		var res = menuOptionsOut.getCountries();
+		var res = menuOptionsOut.getSpecies();
 		Assertions.assertEquals(toReturn, res);
 	}
 	
