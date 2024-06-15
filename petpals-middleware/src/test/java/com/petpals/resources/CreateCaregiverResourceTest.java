@@ -5,8 +5,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.petpals.clients.dto.caregivers.CreateCaregiver;
 import com.petpals.clients.dto.caregivers.Days;
 import com.petpals.domain.ports.in.SaveCaregiversIn;
-import com.petpals.shared.enums.CaregiverTypes;
-import com.petpals.shared.enums.Species;
+import com.petpals.shared.model.enums.CaregiverTypes;
+import com.petpals.shared.model.enums.SpeciesEnum;
 import io.quarkus.test.InjectMock;
 import io.quarkus.test.junit.QuarkusTest;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
@@ -35,7 +35,7 @@ class CreateCaregiverResourceTest {
 				"92150",
 				"France",
 				new Days[]{},
-				new Species[]{},
+				new SpeciesEnum[]{},
 				false,
 				0.5,
 				CaregiverTypes.GROOMER,

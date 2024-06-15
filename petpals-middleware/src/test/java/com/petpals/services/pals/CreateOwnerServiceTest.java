@@ -6,10 +6,10 @@ import com.petpals.domain.ports.in.CreateOwnerIn;
 import com.petpals.domain.ports.out.CreateOwnerOut;
 import com.petpals.shared.entities.uuid.UUIDFormatter;
 import com.petpals.shared.entities.uuid.UUIDGenerator;
-import com.petpals.shared.enums.Species;
-import com.petpals.shared.model.PalIdentityInformation;
-import com.petpals.shared.model.PalMeasurement;
-import com.petpals.shared.model.PalMedicalInformation;
+import com.petpals.shared.model.dto.PalIdentityInformation;
+import com.petpals.shared.model.dto.PalMeasurement;
+import com.petpals.shared.model.dto.PalMedicalInformation;
+import com.petpals.shared.model.enums.SpeciesEnum;
 import io.quarkus.test.InjectMock;
 import io.quarkus.test.junit.QuarkusTest;
 import jakarta.inject.Inject;
@@ -21,7 +21,6 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @QuarkusTest
@@ -61,7 +60,7 @@ class CreateOwnerServiceTest {
 										"Ashe",
 										"2022-04-28",
 										true,
-										Species.DOG,
+										SpeciesEnum.DOG,
 										"Husky",
 										"250261245784512",
 										true)
