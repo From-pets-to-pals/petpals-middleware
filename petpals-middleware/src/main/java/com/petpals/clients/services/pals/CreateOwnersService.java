@@ -1,5 +1,6 @@
 package com.petpals.clients.services.pals;
 
+import com.petpals.clients.dto.pals.NewOwner;
 import com.petpals.clients.endpoints.pals.CreateOwnersClient;
 import com.petpals.clients.mappers.pals.CreateOwnerMapper;
 import com.petpals.domain.commands.pals.CreateOwnerCommand;
@@ -25,7 +26,7 @@ public class CreateOwnersService implements CreateOwnerOut {
 	
 	@Override
 	public Long createOwners(CreateOwnerCommand createOwnerCommand) {
-		var newOwner = createOwnerMapper.fromDomain(createOwnerCommand);
+		NewOwner newOwner = createOwnerMapper.fromDomain(createOwnerCommand);
 		try {
 			LOGGER.info("Sending create owner request to Pals" );
 			LOGGER.info(newOwner.toString());

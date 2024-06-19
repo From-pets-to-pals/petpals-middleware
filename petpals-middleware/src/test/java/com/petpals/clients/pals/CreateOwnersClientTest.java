@@ -49,6 +49,7 @@ class CreateOwnersClientTest {
 		var reference = UUIDFormatter.formatUUIDSequence(UUIDGenerator.generateUUID(),true,"");
 		createOwnerCommand = new CreateOwnerCommand(
 				"sa.bennaceur@gmail.com",
+				"A",
 				"Sidou",
 				"OPPO X59",
 				reference,

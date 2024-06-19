@@ -5,6 +5,7 @@ import java.util.Objects;
 
 public final class CreateOwnerCommand {
 	private String email;
+	private String password;
 	private String username;
 	private  String deviceId;
 	private String reference;
@@ -14,8 +15,9 @@ public final class CreateOwnerCommand {
 	public CreateOwnerCommand() {
 	}
 	
-	public CreateOwnerCommand(String email, String username, String deviceId, String reference, String location, List<CreatePalCommand> pals) {
+	public CreateOwnerCommand(String email, String password, String username, String deviceId, String reference, String location, List<CreatePalCommand> pals) {
 		this.email = email;
+		this.password = password;
 		this.username = username;
 		this.deviceId = deviceId;
 		this.reference = reference;
@@ -69,7 +71,15 @@ public final class CreateOwnerCommand {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;

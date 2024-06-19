@@ -43,7 +43,8 @@ public class AzureConfigSourceFactory implements ConfigSourceFactory {
 			conf.put(MIDDLEWARE_API_KEY,secretClient.getSecret("MIDDLEWARE-API-KEY").getValue());
 			conf.put(CLAIMS,secretClient.getSecret("CLAIMS-ORIGIN").getValue());
 			conf.put(ISSUER,secretClient.getSecret("TOKEN-ISSUER").getValue());
-			
+
+
 			return Collections.singletonList(new PropertiesConfigSource(conf,null, getPriority().getAsInt()));
 		}
 		conf.put(CAREGIVERS_API_KEY,caregiversApiKey.getValue());

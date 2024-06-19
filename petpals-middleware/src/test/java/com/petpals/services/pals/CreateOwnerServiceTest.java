@@ -38,6 +38,7 @@ class CreateOwnerServiceTest {
 	public void setup() {
 		createOwnerCommand = new CreateOwnerCommand(
 				"sa.bennaceur@gmail.com",
+				"A",
 				"Sidou",
 				"OPPO X60",
 				UUIDFormatter.formatUUIDSequence(UUIDGenerator.generateUUID(),true,""),
