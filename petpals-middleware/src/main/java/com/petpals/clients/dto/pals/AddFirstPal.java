@@ -1,7 +1,6 @@
 package com.petpals.clients.dto.pals;
 
 import com.petpals.shared.model.SpeciesConstraint;
-import com.petpals.shared.model.dto.Specie;
 import com.petpals.shared.model.enums.SpeciesEnum;
 import jakarta.validation.constraints.*;
 
@@ -13,7 +12,7 @@ public record AddFirstPal(
 		@NotBlank @Size(min=2) String shortname,
 		String birthDate,
 		@NotNull boolean isMale,
-		@NotNull @SpeciesConstraint(message = "Invalid specie", enumClass = SpeciesEnum.class) Specie specie,
+		@NotNull @SpeciesConstraint(message = "Invalid specie", enumClass = SpeciesEnum.class) SpeciesEnum specie,
 		@Size(min = 5, max = 25) String breed,
 		@Pattern(regexp = "^[250(26|22)\\d{10}]{15}$", message = "Identifier format invalid") String icadIdentifier,
 		@NotNull Boolean hasPassport,
