@@ -2,6 +2,7 @@ package com.petpals.clients.endpoints.caregivers;
 
 import com.petpals.bootstrap.factories.CaregiversClientConfigurationFactory;
 import com.petpals.clients.dto.caregivers.CreateCaregiver;
+import com.petpals.domain.commands.CreateCaregiverCommand;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.POST;
@@ -20,5 +21,5 @@ public interface SaveCaregiversClient {
 	@Path("/create")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
-	String createCaregiver(CreateCaregiver caregiver);
+	String createCaregiver(CreateCaregiverCommand caregiver);
 }
