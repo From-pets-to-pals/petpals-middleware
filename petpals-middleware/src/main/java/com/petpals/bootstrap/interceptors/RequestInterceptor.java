@@ -20,18 +20,11 @@ import java.util.List;
 public class RequestInterceptor implements ContainerRequestFilter  {
 	public static final Logger LOGGER = Logger.getLogger(RequestInterceptor.class.getName());
 	
-	JsonWebToken jwt;
 	@Context
 	UriInfo info;
 	
 	private static final String HEADER_NAME = "API-KEY";
 	
-	@Inject
-	public RequestInterceptor(JsonWebToken jwt) {
-		this.jwt = jwt;
-	}
-	@ConfigProperty(name = "claims.origin")
-	public String origin;
 	@ConfigProperty(name = "middleware.api.key")
 	public String middlewareApiKey;
 	@Override
@@ -50,21 +43,5 @@ public class RequestInterceptor implements ContainerRequestFilter  {
 				HEADER_NAME).equals(middlewareApiKey)) {
 			throw new PetPalsExceptions(ExceptionsEnum.MIDDLEWARE_MISSING_API_KEY);
 		}
-		if(containerRequestContext.getHeaderString(HEADER_NAME) == null && hasJwt()) {
-			throw new PetPalsExceptions(ExceptionsEnum.MIDDLEWARE_MISSING_API_KEY);
-		}
-		if (!hasJwt()) {
-			throw new PetPalsExceptions(ExceptionsEnum.MIDDLEWARE_NO_JW_TOKEN);
-		}
-		if(hasJwt() && !jwt.containsClaim(Claims.address.name())){
-			throw new PetPalsExceptions(ExceptionsEnum.MIDDLEWARE_NO_JW_TOKEN);
-		}
-		if (hasJwt() && jwt.containsClaim(Claims.address.name()) && (jwt.getClaim(Claims.address.name()) == null || !jwt.getClaim(Claims.address.name()).equals(origin))) {
-			throw new PetPalsExceptions(ExceptionsEnum.MIDDLEWARE_NO_JW_TOKEN);
-		}
-	}
-	
-	private boolean hasJwt() {
-		return jwt.getClaimNames() != null;
 	}
 }
