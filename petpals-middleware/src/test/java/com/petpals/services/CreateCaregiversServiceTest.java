@@ -43,9 +43,9 @@ class CreateCaregiversServiceTest {
 		createCaregiver.setSubscribed(false);
 		createCaregiver.setPriceRating(0.0);
 		createCaregiver.setServiceRating(0.0);
-		var toReturn = UUIDFormatter.formatUUIDSequence(UUIDGenerator.generateUUID(), true,"");
-		Mockito.when(saveCaregiversOut.createCaregiver(createCaregiver)).thenReturn(toReturn);
-		var res = saveCaregiversIn.createCaregiver(createCaregiver);
-		Assertions.assertEquals(toReturn, res);
+		UUIDFormatter.formatUUIDSequence(UUIDGenerator.generateUUID(), true,"");
+		Mockito.doNothing().when(saveCaregiversOut).createCaregiver(createCaregiver);
+		saveCaregiversIn.createCaregiver(createCaregiver);
+		Mockito.verify(saveCaregiversOut, Mockito.times(1)).createCaregiver(createCaregiver);
 	}
 }

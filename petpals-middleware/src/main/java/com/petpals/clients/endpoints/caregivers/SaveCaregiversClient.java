@@ -11,7 +11,7 @@ import jakarta.ws.rs.core.MediaType;
 import org.eclipse.microprofile.rest.client.annotation.RegisterClientHeaders;
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
-@RegisterRestClient(baseUri = "http://127.0.0.1:83/")
+@RegisterRestClient(baseUri = "https://petpals-caregivers.azurewebsites.net/")
 @RegisterClientHeaders(CaregiversClientConfigurationFactory.class)
 @RequestScoped
 @Path("/caregivers")
@@ -20,5 +20,5 @@ public interface SaveCaregiversClient {
 	@Path("/create")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
-	String createCaregiver(CreateCaregiverCommand caregiver);
+	void createCaregiver(CreateCaregiverCommand caregiver);
 }
