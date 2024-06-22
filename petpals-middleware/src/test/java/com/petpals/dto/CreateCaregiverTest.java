@@ -2,7 +2,7 @@ package com.petpals.dto;
 
 import com.petpals.clients.dto.caregivers.CreateCaregiver;
 import com.petpals.clients.dto.caregivers.Days;
-import com.petpals.shared.model.enums.CaregiverTypes;
+import com.petpals.shared.model.enums.PalsFriendsTypes;
 import com.petpals.shared.model.enums.SpeciesEnum;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -26,7 +26,7 @@ class CreateCaregiverTest {
 				species,
 				false,
 				0.5,
-				CaregiverTypes.GROOMER,
+				PalsFriendsTypes.GROOMER,
 				false,
 				0.0,
 				0.0
@@ -44,7 +44,7 @@ class CreateCaregiverTest {
 				species,
 				false,
 				0.5,
-				CaregiverTypes.GROOMER,
+				PalsFriendsTypes.GROOMER,
 				false,
 				0.0,
 				0.0
