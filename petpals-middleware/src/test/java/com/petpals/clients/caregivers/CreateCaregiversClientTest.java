@@ -1,13 +1,13 @@
 package com.petpals.clients.caregivers;
 
-import com.petpals.clients.dto.caregivers.CreateCaregiver;
 import com.petpals.clients.dto.caregivers.Days;
 import com.petpals.clients.endpoints.caregivers.SaveCaregiversClient;
+import com.petpals.domain.commands.CreateCaregiverCommand;
 import com.petpals.domain.ports.out.SaveCaregiversOut;
 import com.petpals.shared.entities.uuid.UUIDFormatter;
 import com.petpals.shared.entities.uuid.UUIDGenerator;
 import com.petpals.shared.errorhandling.PetPalsExceptions;
-import com.petpals.shared.model.enums.CaregiverTypes;
+import com.petpals.shared.model.enums.PalsFriendsTypes;
 import com.petpals.shared.model.enums.SpeciesEnum;
 import io.quarkus.test.InjectMock;
 import io.quarkus.test.junit.QuarkusTest;
@@ -28,27 +28,27 @@ class CreateCaregiversClientTest {
 	@InjectMock
 	@RestClient
 	SaveCaregiversClient saveCaregiversClient;
-	CreateCaregiver createCaregiver;
+	CreateCaregiverCommand createCaregiver;
 	@BeforeEach
 	void setUp(){
-		createCaregiver = new CreateCaregiver(
-				"Sid",
-				"Bennaceur",
-				null,
-				"0764017528",
-				"101, rue des Acquevilles",
-				"Suresnes",
-				"92150",
-				"France",
-				new Days[]{},
-				new SpeciesEnum[]{},
-				false,
-				0.5,
-				CaregiverTypes.GROOMER,
-				false,
-				0.0,
-				0.0
-		);
+		createCaregiver = new CreateCaregiverCommand();
+		createCaregiver.setReference(UUIDGenerator.generateUUID().toString());
+		createCaregiver.setFirstName("Sid");
+		createCaregiver.setLastName("Bennaceur");
+		createCaregiver.setEmail("sa.benn@test.com");
+		createCaregiver.setPhoneNumber("0764017528");
+		createCaregiver.setAddress("101, rue des Acquevilles");
+		createCaregiver.setCity("Suresnes");
+		createCaregiver.setZipCode("92150");
+		createCaregiver.setCountry("France");
+		createCaregiver.setWorkingDays(new Days[]{});
+		createCaregiver.setPalsHandled(new SpeciesEnum[]{});
+		createCaregiver.setHomeService(false);
+		createCaregiver.setAppointmentDuration(0.5);
+		createCaregiver.setCaregiverType(PalsFriendsTypes.VET);
+		createCaregiver.setSubscribed(false);
+		createCaregiver.setPriceRating(0.0);
+		createCaregiver.setServiceRating(0.0);
 	}
 	
 	@Test
