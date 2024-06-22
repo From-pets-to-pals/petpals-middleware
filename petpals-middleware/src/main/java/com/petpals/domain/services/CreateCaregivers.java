@@ -23,12 +23,6 @@ public class CreateCaregivers implements SaveCaregiversIn {
 	public String createCaregiver(CreateCaregiverCommand createCaregiver) {
 		final var reference = UUIDFormatter.formatUUIDSequence(UUIDGenerator.generateUUID(), true, "");
 		createCaregiver.setReference(reference);
-		ObjectMapper mapper = new ObjectMapper();
-		try {
-			Logger.getLogger("here").info(mapper.writeValueAsString(createCaregiver));
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-		}
 		return saveCaregiversOut.createCaregiver(createCaregiver);
 	}
 }
