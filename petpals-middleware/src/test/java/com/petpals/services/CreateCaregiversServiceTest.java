@@ -40,12 +40,12 @@ class CreateCaregiversServiceTest {
 		createCaregiver.setHomeService(false);
 		createCaregiver.setAppointmentDuration(0.5);
 		createCaregiver.setCaregiverType(PalsFriendsTypes.VET);
-		createCaregiver.setSubscribed(false);
+		createCaregiver.setIsSubscribed(false);
 		createCaregiver.setPriceRating(0.0);
 		createCaregiver.setServiceRating(0.0);
-		var toReturn = UUIDFormatter.formatUUIDSequence(UUIDGenerator.generateUUID(), true,"");
-		Mockito.when(saveCaregiversOut.createCaregiver(createCaregiver)).thenReturn(toReturn);
-		var res = saveCaregiversIn.createCaregiver(createCaregiver);
-		Assertions.assertEquals(toReturn, res);
+		UUIDFormatter.formatUUIDSequence(UUIDGenerator.generateUUID(), true,"");
+		Mockito.doNothing().when(saveCaregiversOut).createCaregiver(createCaregiver);
+		saveCaregiversIn.createCaregiver(createCaregiver);
+		Mockito.verify(saveCaregiversOut, Mockito.times(1)).createCaregiver(createCaregiver);
 	}
 }

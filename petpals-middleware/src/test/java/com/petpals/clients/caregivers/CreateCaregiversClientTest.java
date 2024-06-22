@@ -46,29 +46,28 @@ class CreateCaregiversClientTest {
 		createCaregiver.setHomeService(false);
 		createCaregiver.setAppointmentDuration(0.5);
 		createCaregiver.setCaregiverType(PalsFriendsTypes.VET);
-		createCaregiver.setSubscribed(false);
+		createCaregiver.setIsSubscribed(false);
 		createCaregiver.setPriceRating(0.0);
 		createCaregiver.setServiceRating(0.0);
 	}
 	
 	@Test
 	void shouldReturnReferenceUponCreateCaregivers(){
-		var toReturn = UUIDFormatter.formatUUIDSequence(UUIDGenerator.generateUUID(), true,"");
-		Mockito.when(saveCaregiversClient.createCaregiver(createCaregiver)).thenReturn(toReturn);
-		var res = saveCaregiversOut.createCaregiver(createCaregiver);
-		Assertions.assertEquals(toReturn, res);
+		Mockito.doNothing().when(saveCaregiversClient).createCaregiver(createCaregiver);
+		saveCaregiversOut.createCaregiver(createCaregiver);
+		Mockito.verify(saveCaregiversClient, Mockito.times(1)).createCaregiver(createCaregiver);
 	}
 	
 	@Test
 	void shouldThrowRestWebException(){
-		Mockito.when(saveCaregiversClient.createCaregiver(createCaregiver)).thenThrow(ResteasyWebApplicationException.class);
+		Mockito.doThrow(ResteasyWebApplicationException.class).when(saveCaregiversClient).createCaregiver(createCaregiver);
 		Assertions.assertThrows(PetPalsExceptions.class, () -> saveCaregiversOut.createCaregiver(createCaregiver));
 		Mockito.verify(saveCaregiversClient).createCaregiver(createCaregiver);
 	}
 	
 	@Test
 	void shouldThrowRestClientException(){
-		Mockito.when(saveCaregiversClient.createCaregiver(createCaregiver)).thenThrow(ResteasyClientErrorException.class);
+		Mockito.doThrow(ResteasyClientErrorException.class).when(saveCaregiversClient).createCaregiver(createCaregiver);
 		Assertions.assertThrows(PetPalsExceptions.class, () -> saveCaregiversOut.createCaregiver(createCaregiver));
 		Mockito.verify(saveCaregiversClient).createCaregiver(createCaregiver);
 	}

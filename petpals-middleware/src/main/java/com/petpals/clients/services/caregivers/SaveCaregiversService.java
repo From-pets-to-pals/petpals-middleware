@@ -1,5 +1,7 @@
 package com.petpals.clients.services.caregivers;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.petpals.clients.endpoints.caregivers.SaveCaregiversClient;
 import com.petpals.domain.commands.caregivers.CreateCaregiverCommand;
 import com.petpals.domain.ports.out.SaveCaregiversOut;
@@ -23,9 +25,15 @@ public class SaveCaregiversService implements SaveCaregiversOut {
 	}
 	
 	@Override
-	public String createCaregiver(CreateCaregiverCommand createCaregiver) {
+	public void createCaregiver(CreateCaregiverCommand createCaregiver) {
+		ObjectMapper mapper = new ObjectMapper();
 		try {
-			return saveCaregiversClient.createCaregiver(createCaregiver);
+			logger.info(mapper.writeValueAsString(createCaregiver));
+		} catch (JsonProcessingException e) {
+			throw new RuntimeException(e);
+		}
+		try {
+			saveCaregiversClient.createCaregiver(createCaregiver);
 			
 		} catch (ResteasyWebApplicationException e) {
 			logger.info(e.toString());

@@ -38,6 +38,8 @@ public class MenuOptions {
 		return caregiverOptionsResponseMapper.toResponse(countries, species);
 	}
 	
+
+	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@PermitAll

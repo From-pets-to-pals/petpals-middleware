@@ -41,7 +41,7 @@ class CreateCaregiverResourceTest {
 		createCaregiver.setHomeService(false);
 		createCaregiver.setAppointmentDuration(0.5);
 		createCaregiver.setCaregiverType(PalsFriendsTypes.VET);
-		createCaregiver.setSubscribed(false);
+		createCaregiver.setIsSubscribed(false);
 		createCaregiver.setPriceRating(0.0);
 		createCaregiver.setServiceRating(0.0);
 		Mockito.when(saveCaregiversIn.createCaregiver(Mockito.any(CreateCaregiverCommand.class))).thenReturn("test");
