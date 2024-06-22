@@ -1,9 +1,7 @@
 package com.petpals.clients.dto.caregivers;
 
 
-
-import com.petpals.shared.model.dto.Specie;
-import com.petpals.shared.model.enums.CaregiverTypes;
+import com.petpals.shared.model.enums.PalsFriendsTypes;
 import com.petpals.shared.model.enums.SpeciesEnum;
 
 import java.util.Arrays;
@@ -12,7 +10,7 @@ import java.util.Objects;
 public record CreateCaregiver(String firstName, String lastName, String email, String phoneNumber, String address,
 							  String city, String zipCode, String country, Days[] workingDays, SpeciesEnum[] palsHandled,
 							  boolean homeService, double appointmentDuration,
-							  CaregiverTypes caregiverType, boolean isSubscribed, double serviceRating,
+							  PalsFriendsTypes caregiverType, boolean isSubscribed, double serviceRating,
 							  double priceRating) {
 	@Override
 	public boolean equals(Object o) {

@@ -2,10 +2,11 @@ package com.petpals.resources;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.petpals.clients.dto.caregivers.CreateCaregiver;
 import com.petpals.clients.dto.caregivers.Days;
+import com.petpals.domain.commands.caregivers.CreateCaregiverCommand;
 import com.petpals.domain.ports.in.SaveCaregiversIn;
-import com.petpals.shared.model.enums.CaregiverTypes;
+import com.petpals.shared.entities.uuid.UUIDGenerator;
+import com.petpals.shared.model.enums.PalsFriendsTypes;
 import com.petpals.shared.model.enums.SpeciesEnum;
 import io.quarkus.test.InjectMock;
 import io.quarkus.test.junit.QuarkusTest;
@@ -22,33 +23,32 @@ class CreateCaregiverResourceTest {
 	String apiKey;
 	@InjectMock
 	SaveCaregiversIn saveCaregiversIn;
-	static CreateCaregiver createCaregiver;
+	static CreateCaregiverCommand createCaregiver;
 	@BeforeEach
 	void setUp(){
-		createCaregiver = new CreateCaregiver(
-				"Sid",
-				"Bennaceur",
-				null,
-				"0764017528",
-				"101, rue des Acquevilles",
-				"Suresnes",
-				"92150",
-				"France",
-				new Days[]{},
-				new SpeciesEnum[]{},
-				false,
-				0.5,
-				CaregiverTypes.GROOMER,
-				false,
-				0.0,
-				0.0
-		);
-		Mockito.when(saveCaregiversIn.createCaregiver(Mockito.any(CreateCaregiver.class))).thenReturn("test");
+		createCaregiver = new CreateCaregiverCommand();
+		createCaregiver.setReference(UUIDGenerator.generateUUID().toString());
+		createCaregiver.setFirstName("Sid");
+		createCaregiver.setLastName("Bennaceur");
+		createCaregiver.setEmail("sa.benn@test.com");
+		createCaregiver.setPhoneNumber("0764017528");
+		createCaregiver.setAddress("101, rue des Acquevilles");
+		createCaregiver.setCity("Suresnes");
+		createCaregiver.setZipCode("92150");
+		createCaregiver.setCountry("France");
+		createCaregiver.setWorkingDays(new Days[]{});
+		createCaregiver.setPalsHandled(new SpeciesEnum[]{});
+		createCaregiver.setHomeService(false);
+		createCaregiver.setAppointmentDuration(0.5);
+		createCaregiver.setCaregiverType(PalsFriendsTypes.VET);
+		createCaregiver.setSubscribed(false);
+		createCaregiver.setPriceRating(0.0);
+		createCaregiver.setServiceRating(0.0);
+		Mockito.when(saveCaregiversIn.createCaregiver(Mockito.any(CreateCaregiverCommand.class))).thenReturn("test");
 	}
 	
 	@Test
 	void testCreateCaregiverBadRequest() throws JsonProcessingException {
-		
 		ObjectMapper mapper = new ObjectMapper();
 		var json = mapper.writeValueAsString(createCaregiver);
 		given()
@@ -58,7 +58,7 @@ class CreateCaregiverResourceTest {
 				.body(json)
 				.when().post("/caregivers")
 				.then()
-				.statusCode(200);
+				.statusCode(400);
 	}
 	
 	@Test

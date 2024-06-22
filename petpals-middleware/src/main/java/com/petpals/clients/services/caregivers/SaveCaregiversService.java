@@ -1,7 +1,7 @@
 package com.petpals.clients.services.caregivers;
 
-import com.petpals.clients.dto.caregivers.CreateCaregiver;
 import com.petpals.clients.endpoints.caregivers.SaveCaregiversClient;
+import com.petpals.domain.commands.caregivers.CreateCaregiverCommand;
 import com.petpals.domain.ports.out.SaveCaregiversOut;
 import com.petpals.shared.errorhandling.ExceptionsEnum;
 import com.petpals.shared.errorhandling.PetPalsExceptions;
@@ -23,7 +23,7 @@ public class SaveCaregiversService implements SaveCaregiversOut {
 	}
 	
 	@Override
-	public String createCaregiver(CreateCaregiver createCaregiver) {
+	public String createCaregiver(CreateCaregiverCommand createCaregiver) {
 		try {
 			return saveCaregiversClient.createCaregiver(createCaregiver);
 			
