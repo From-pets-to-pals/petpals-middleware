@@ -2,7 +2,7 @@ package com.petpals.clients.caregivers;
 
 import com.petpals.clients.dto.caregivers.Days;
 import com.petpals.clients.endpoints.caregivers.SaveCaregiversClient;
-import com.petpals.domain.commands.CreateCaregiverCommand;
+import com.petpals.domain.commands.caregivers.CreateCaregiverCommand;
 import com.petpals.domain.ports.out.SaveCaregiversOut;
 import com.petpals.shared.entities.uuid.UUIDFormatter;
 import com.petpals.shared.entities.uuid.UUIDGenerator;

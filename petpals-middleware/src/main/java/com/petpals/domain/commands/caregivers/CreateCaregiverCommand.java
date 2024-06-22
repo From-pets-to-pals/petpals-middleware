@@ -1,4 +1,4 @@
-package com.petpals.domain.commands;
+package com.petpals.domain.commands.caregivers;
 
 import com.petpals.clients.dto.caregivers.Days;
 import com.petpals.shared.model.enums.PalsFriendsTypes;

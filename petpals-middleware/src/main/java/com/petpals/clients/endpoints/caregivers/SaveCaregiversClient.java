@@ -1,8 +1,7 @@
 package com.petpals.clients.endpoints.caregivers;
 
 import com.petpals.bootstrap.factories.CaregiversClientConfigurationFactory;
-import com.petpals.clients.dto.caregivers.CreateCaregiver;
-import com.petpals.domain.commands.CreateCaregiverCommand;
+import com.petpals.domain.commands.caregivers.CreateCaregiverCommand;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.POST;

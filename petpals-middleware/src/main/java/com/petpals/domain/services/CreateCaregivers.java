@@ -2,8 +2,7 @@ package com.petpals.domain.services;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.petpals.clients.dto.caregivers.CreateCaregiver;
-import com.petpals.domain.commands.CreateCaregiverCommand;
+import com.petpals.domain.commands.caregivers.CreateCaregiverCommand;
 import com.petpals.domain.ports.in.SaveCaregiversIn;
 import com.petpals.domain.ports.out.SaveCaregiversOut;
 import com.petpals.shared.entities.uuid.UUIDFormatter;

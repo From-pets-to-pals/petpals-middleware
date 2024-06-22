@@ -1,7 +1,7 @@
 package com.petpals.application.dto.responses;
 
 import com.petpals.clients.dto.caregivers.CreateCaregiver;
-import com.petpals.domain.commands.CreateCaregiverCommand;
+import com.petpals.domain.commands.caregivers.CreateCaregiverCommand;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
 
