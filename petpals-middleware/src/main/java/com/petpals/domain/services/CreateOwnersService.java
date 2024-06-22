@@ -33,17 +33,15 @@ public class CreateOwnersService implements CreateOwnerIn {
 		LOGGER.log(Level.INFO, () -> String.format("Owner %s has %d pals", createOwnerCommand.getEmail(),
 								  createOwnerCommand.getPals().size()));
 		
-		if(!createOwnerCommand.getPals().isEmpty()){
-			for(CreatePalCommand pal: createOwnerCommand.getPals()){
-				final var palReference = UUIDFormatter.formatUUIDSequence(UUIDGenerator.generateUUID(), true,"");
+		if(!createOwnerCommand.getPals().isEmpty()) {
+			for (CreatePalCommand pal : createOwnerCommand.getPals()) {
+				final var palReference = UUIDFormatter.formatUUIDSequence(UUIDGenerator.generateUUID(), true, "");
 				LOGGER.info(() -> String.format("Attributing %s as a reference for pal %s", palReference,
-												pal));
-				pal.setReference(reference);
+						pal));
+				pal.setReference(palReference);
 			}
-			createOwnerOut.createOwners(createOwnerCommand);
-			return reference;
-		} else {
-			throw new PetPalsExceptions(ExceptionsEnum.MIDDLEWARE_CREATE_OWNER_NO_PAL);
 		}
+		createOwnerOut.createOwners(createOwnerCommand);
+		return reference;
 	}
 }
