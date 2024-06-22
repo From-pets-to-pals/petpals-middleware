@@ -21,11 +21,11 @@ public class JwtTokenGenerator implements JwtTokenGeneratorPort {
 	String origin;
 	
 	@Override
-	public String getToken(String email, String caregiverType) {
+	public String getToken(String email, String userType) {
 		return
 				Jwt.issuer(issuer)
 						.upn(email)
-						.groups(new HashSet<>(Collections.singletonList(caregiverType)))
+						.groups(new HashSet<>(Collections.singletonList(userType)))
 						.expiresAt(Instant.now().plus(14, ChronoUnit.DAYS))
 						.claim(Claims.address.name(), origin)
 						.sign();

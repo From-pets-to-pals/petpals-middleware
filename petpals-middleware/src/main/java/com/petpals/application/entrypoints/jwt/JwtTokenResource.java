@@ -19,8 +19,8 @@ public class JwtTokenResource {
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
 	@PermitAll
-	@Path("/{email}/{caregiverType}")
-	public String getToken(@PathParam("email") String email, @PathParam("caregiverType") String caregiverType) {
-		return tokenGenerator.getToken(email, caregiverType);
+	@Path("/{email}/{userType}")
+	public String getToken(@PathParam("email") String email, @PathParam("userType") String userType) {
+		return tokenGenerator.getToken(email, userType);
 	}
 }

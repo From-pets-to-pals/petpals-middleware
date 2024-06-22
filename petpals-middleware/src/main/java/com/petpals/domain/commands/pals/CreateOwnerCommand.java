@@ -11,6 +11,8 @@ public final class CreateOwnerCommand {
 	private String reference;
 	private  String location;
 	private  List<CreatePalCommand> pals;
+
+	private String salt;
 	
 	public CreateOwnerCommand() {
 	}
@@ -24,6 +26,8 @@ public final class CreateOwnerCommand {
 		this.location = location;
 		this.pals = pals;
 	}
+
+
 	public String getEmail() {
 		return email;
 	}
@@ -79,6 +83,7 @@ public final class CreateOwnerCommand {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
 
 	@Override
 	public boolean equals(Object o) {

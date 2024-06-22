@@ -4,9 +4,12 @@ import com.petpals.clients.dto.pals.AuthOwner;
 import com.petpals.clients.endpoints.pals.AuthOwnersClient;
 import com.petpals.clients.mappers.pals.AuthOwnerMapper;
 import com.petpals.domain.commands.pals.AuthOwnerCommand;
+import com.petpals.domain.ports.in.JwtTokenGeneratorPort;
 import com.petpals.domain.ports.out.AuthOwnerOut;
+import com.petpals.domain.services.JwtTokenGenerator;
 import com.petpals.shared.errorhandling.ExceptionsEnum;
 import com.petpals.shared.errorhandling.PetPalsExceptions;
+import com.petpals.shared.model.enums.UserTypes;
 import jakarta.enterprise.context.ApplicationScoped;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 import org.jboss.logging.Logger;
@@ -19,9 +22,12 @@ public class AuthOwnersService implements AuthOwnerOut {
     AuthOwnersClient authOwnersClient;
     AuthOwnerMapper authOwnerMapper;
 
-    public AuthOwnersService(@RestClient AuthOwnersClient authOwnersClient, AuthOwnerMapper authOwnerMapper) {
+    JwtTokenGenerator tokenGenerator;
+
+    public AuthOwnersService(@RestClient AuthOwnersClient authOwnersClient, AuthOwnerMapper authOwnerMapper, JwtTokenGenerator tokenGenerator) {
         this.authOwnersClient = authOwnersClient;
         this.authOwnerMapper = authOwnerMapper;
+        this.tokenGenerator = tokenGenerator;
     }
 
     @Override
@@ -30,7 +36,8 @@ public class AuthOwnersService implements AuthOwnerOut {
         try {
             LOGGER.info("Sending auth owner request to Pals" );
             LOGGER.info(authOwner.toString());
-            return authOwnersClient.authOwner(authOwner);
+            authOwnersClient.authOwner(authOwner);
+            return tokenGenerator.getToken(authOwner.email(), String.valueOf(UserTypes.OWNER));
         } catch (ResteasyWebApplicationException e) {
             LOGGER.info(e.toString());
             throw new PetPalsExceptions(

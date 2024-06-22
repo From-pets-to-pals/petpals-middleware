@@ -39,7 +39,7 @@ public class RequestInterceptor implements ContainerRequestFilter  {
 		LOGGER.info(String.format("Filtering incoming request with uri: %s", info.getPath()));
 	 	final List<String> authorizedPath = List.of("/hello", "/token","/options");
 		 if(authorizedPath.stream().anyMatch(path -> info.getPath().startsWith(path)) || info.getPath().equals(
-				 "/caregivers") || info.getPath().equals("/owners")){
+				 "/caregivers") || info.getPath().equals("/owners") || info.getPath().equals("/owners/auth")){
 			 if(containerRequestContext.getHeaderString(HEADER_NAME) == null || !containerRequestContext.getHeaderString(
 					 HEADER_NAME).equals(middlewareApiKey)) {
 				 throw new PetPalsExceptions(ExceptionsEnum.MIDDLEWARE_MISSING_API_KEY);
@@ -54,6 +54,7 @@ public class RequestInterceptor implements ContainerRequestFilter  {
 			throw new PetPalsExceptions(ExceptionsEnum.MIDDLEWARE_MISSING_API_KEY);
 		}
 		if (!hasJwt()) {
+			System.out.println(jwt.getRawToken());
 			throw new PetPalsExceptions(ExceptionsEnum.MIDDLEWARE_NO_JW_TOKEN);
 		}
 		if(hasJwt() && !jwt.containsClaim(Claims.address.name())){
@@ -65,6 +66,7 @@ public class RequestInterceptor implements ContainerRequestFilter  {
 	}
 	
 	private boolean hasJwt() {
+		Boolean res = jwt.getClaimNames() != null;
 		return jwt.getClaimNames() != null;
 	}
 }

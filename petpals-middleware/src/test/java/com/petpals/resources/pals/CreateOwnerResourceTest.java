@@ -41,6 +41,7 @@ class CreateOwnerResourceTest {
 	void setUp() {
 		createOwnerRequest = new CreateOwnerRequest(
 				"sa.bennaceur@gmail.com",
+				"A",
 				"OPPO X59",
 				"0764017528",
 				"FRANCE",
