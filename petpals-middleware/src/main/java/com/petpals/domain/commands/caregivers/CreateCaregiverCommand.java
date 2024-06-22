@@ -155,7 +155,7 @@ public class CreateCaregiverCommand {
 		this.palsHandled = palsHandled;
 	}
 	
-	public boolean isHomeService() {
+	public boolean getIsHomeService() {
 		return homeService;
 	}
 	
@@ -179,12 +179,12 @@ public class CreateCaregiverCommand {
 		this.caregiverType = caregiverType;
 	}
 	
-	public boolean isSubscribed() {
+	public boolean getIsSubscribed() {
 		return isSubscribed;
 	}
 	
-	public void setSubscribed(boolean subscribed) {
-		isSubscribed = subscribed;
+	public void setIsSubscribed(boolean isSubscribed) {
+		this.isSubscribed = isSubscribed;
 	}
 	
 	public double getServiceRating() {
