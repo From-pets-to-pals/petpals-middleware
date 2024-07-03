@@ -13,6 +13,7 @@ import org.eclipse.microprofile.openapi.annotations.security.SecurityRequirement
 import org.jboss.logging.Logger;
 
 @Path("/owners/auth")
+
 @SecurityRequirement(name = "api_key")
 public class AuthOwnerResource {
 	private static final Logger LOGGER = Logger.getLogger(AuthOwnerResource.class.getName());

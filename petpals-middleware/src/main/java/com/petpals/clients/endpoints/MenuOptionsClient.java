@@ -16,7 +16,7 @@ import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 import java.util.List;
 
 
-@RegisterRestClient(baseUri = "https://petpals-pals.azurewebsites.net/")
+@RegisterRestClient(baseUri = "http://127.0.0.1:70")
 @RegisterClientHeaders(PalsClientConfigurationFactory.class)
 @RequestScoped
 @Path("/options")

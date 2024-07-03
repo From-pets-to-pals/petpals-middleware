@@ -9,7 +9,7 @@ import com.petpals.domain.ports.out.AuthOwnerOut;
 import com.petpals.domain.services.JwtTokenGenerator;
 import com.petpals.shared.errorhandling.ExceptionsEnum;
 import com.petpals.shared.errorhandling.PetPalsExceptions;
-import com.petpals.shared.model.enums.UserTypes;
+import com.petpals.shared.model.enums.PalsFriendsTypes;
 import jakarta.enterprise.context.ApplicationScoped;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 import org.jboss.logging.Logger;
@@ -37,7 +37,7 @@ public class AuthOwnersService implements AuthOwnerOut {
             LOGGER.info("Sending auth owner request to Pals" );
             LOGGER.info(authOwner.toString());
             authOwnersClient.authOwner(authOwner);
-            return tokenGenerator.getToken(authOwner.email(), String.valueOf(UserTypes.OWNER));
+            return tokenGenerator.getToken(authOwner.email(), String.valueOf(PalsFriendsTypes.OWNER));
         } catch (ResteasyWebApplicationException e) {
             LOGGER.info(e.toString());
             throw new PetPalsExceptions(
