@@ -3,6 +3,7 @@ package com.petpals.application.entrypoints.pals;
 import com.petpals.application.dto.pals.AuthOwnerRequest;
 import com.petpals.application.mappers.pals.AuthOwnerRequestMapper;
 import com.petpals.domain.ports.in.AuthOwnerIn;
+import jakarta.annotation.security.PermitAll;
 import jakarta.validation.Valid;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.POST;
