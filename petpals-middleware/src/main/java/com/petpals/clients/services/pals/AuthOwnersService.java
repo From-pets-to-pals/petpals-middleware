@@ -11,6 +11,9 @@ import com.petpals.shared.errorhandling.ExceptionsEnum;
 import com.petpals.shared.errorhandling.PetPalsExceptions;
 import com.petpals.shared.model.enums.PalsFriendsTypes;
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.ws.rs.ProcessingException;
+import jakarta.ws.rs.WebApplicationException;
+import jakarta.ws.rs.core.Response;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 import org.jboss.logging.Logger;
 import org.jboss.resteasy.client.exception.ResteasyClientErrorException;
@@ -33,20 +36,18 @@ public class AuthOwnersService implements AuthOwnerOut {
     @Override
     public String authOwners(AuthOwnerCommand authOwnerCommand) {
         AuthOwner authOwner = authOwnerMapper.fromDomain(authOwnerCommand);
+        LOGGER.info("Sending auth owner request to Pals");
+        LOGGER.info(authOwner.toString());
         try {
-            LOGGER.info("Sending auth owner request to Pals" );
-            LOGGER.info(authOwner.toString());
             authOwnersClient.authOwner(authOwner);
             return tokenGenerator.getToken(authOwner.email(), String.valueOf(PalsFriendsTypes.OWNER));
+
         } catch (ResteasyWebApplicationException e) {
-            LOGGER.info(e.toString());
-            throw new PetPalsExceptions(
-                    ExceptionsEnum.DB_UNIQUE_KEY_OWNER_MAIL_CONSTRAINT_VIOLATION
-            );
-        } catch (ResteasyClientErrorException e) {
-            LOGGER.info(e.toString());
-            throw new PetPalsExceptions(
-                    ExceptionsEnum.PALS_MISSING_API_KEY);
+            Response response = e.getResponse();
+            String errorMessage = response.readEntity(String.class);
+            throw new PetPalsExceptions(ExceptionsEnum.OWNERS_WRONG_CREDENTIALS);
         }
+
+
     }
 }

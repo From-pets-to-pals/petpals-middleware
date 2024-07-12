@@ -3,6 +3,7 @@ package com.petpals.application.entrypoints.pals;
 import com.petpals.application.dto.pals.CreateOwnerRequest;
 import com.petpals.application.mappers.pals.CreateOwnerRequestMapper;
 import com.petpals.domain.ports.in.CreateOwnerIn;
+import com.petpals.shared.errorhandling.PetPalsExceptions;
 import jakarta.annotation.security.PermitAll;
 import jakarta.validation.Valid;
 import jakarta.ws.rs.Consumes;
@@ -33,6 +34,6 @@ public class CreateOwnerResource {
 		if (LOGGER.isInfoEnabled()) {
 			LOGGER.info(String.format("Create owners call with owner : %s", createOwnerRequest.toString()));
 		}
-		return createOwnerIn.createOwners(createOwnerRequestMapper.toCommand(createOwnerRequest));
-	}
+        return createOwnerIn.createOwners(createOwnerRequestMapper.toCommand(createOwnerRequest));
+    }
 }
