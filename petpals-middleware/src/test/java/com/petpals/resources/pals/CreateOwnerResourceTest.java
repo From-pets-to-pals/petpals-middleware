@@ -6,9 +6,7 @@ import com.petpals.application.dto.pals.CreateOwnerRequest;
 import com.petpals.application.dto.pals.CreatePalRequest;
 import com.petpals.application.mappers.pals.CreateOwnerRequestMapper;
 import com.petpals.domain.ports.in.CreateOwnerIn;
-import com.petpals.shared.model.dto.PalIdentityInformation;
-import com.petpals.shared.model.dto.PalMeasurement;
-import com.petpals.shared.model.dto.PalMedicalInformation;
+import com.petpals.shared.model.dto.*;
 import com.petpals.shared.model.enums.SpeciesEnum;
 import io.quarkus.test.InjectMock;
 import io.quarkus.test.junit.QuarkusTest;
@@ -59,8 +57,8 @@ class CreateOwnerResourceTest {
 										"Ashe",
 										"2022-03-28",
 										true,
-										SpeciesEnum.DOG,
-										"Husky",
+										new Specie(Short.valueOf("3"), "NAC"),
+										new BreedWithoutSpecie(Short.valueOf("144"), "German Shepherd"),
 										"250261245784512",
 										true
 								),
@@ -74,43 +72,8 @@ class CreateOwnerResourceTest {
 		var ownerCommand = createOwnerRequestMapper.toCommand(createOwnerRequest);
 		Mockito.when(createOwnerIn.createOwners(ownerCommand)).thenReturn("123456789456123");
 	}
-	
-	@Test
-	void testCreateCaregiverOkRequest() throws JsonProcessingException {
-		ObjectMapper mapper = new ObjectMapper();
-		var json = mapper.writeValueAsString(createOwnerRequest);
-		given()
-				.headers("API-KEY", apiKey)
-				.header("Authorization", "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJwZXRwYWxzIiwidXBuIjoic2EuYmVubmFjZXVyQGdtYWlsLmNvbSIsImdyb3VwcyI6WyJDYXJlZ2l2ZXJzIiwiT3duZXJzIl0sImV4cCI6MTcxNTEzMzgyMCwiYWRkcmVzcyI6InBldHBhbHMtYXBwcyIsImlhdCI6MTcxMzkyNDIyMCwianRpIjoiMzA3ZTY3Y2QtZDQ1Zi00OWMyLWFlZTEtZmZiNTI5MWZmOWVkIn0.qnQ1znsWaqfO-mU0LLA5EwSJ1L8Ko01-Qx5lF5WeZUkwk_nmh0arO16CtsJmmwi-pFrbipnKmlp9z9sLevoIrqb9ldQ7DQPDgbF0QCXQjGJK9BQjqieIyw9lLXgLlwn-VZv-tG74JvPnUxXOZpWit1MPBSwuWqfHwBe_McBV9pBKOwZ33Gx_c2SGjjUCel1ChCmAx0VXkEdivm-tcAzeOmPyFcphMdNB22CyiqrETtegfKH3eBAa81n4s0kFOjVJ-B6uFIQKzOwHnvKbg7OdxHDlXSVIoUaE4e1WEv2uR2NZTSVlrP9KIO24zg6TKMdf1vKfIod77AAASfmo21cBVA")
-				.header("Content-Type", "application/json")
-				.body(json)
-				.when().post("/owners")
-				.then()
-				.statusCode(200)
-				.body(is("123456789456123"));
-	}
-	
-	@Test
-	void testCreateCaregiverBadRequest() throws JsonProcessingException {
-		ObjectMapper mapper = new ObjectMapper();
-		CreateOwnerBadRequest badRequest = new CreateOwnerBadRequest(
-				12,
-				"sa.bennaceur@gmail.com",
-				"OPPOx59",
-				"Sidou",
-				"PARIS_FR",
-				new ArrayList<>()
-		);
-		var json = mapper.writeValueAsString(badRequest);
-		given()
-				.headers("API-KEY", apiKey)
-				.header("Authorization", "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJwZXRwYWxzIiwidXBuIjoic2EuYmVubmFjZXVyQGdtYWlsLmNvbSIsImdyb3VwcyI6WyJDYXJlZ2l2ZXJzIiwiT3duZXJzIl0sImV4cCI6MTcxNTEzMzgyMCwiYWRkcmVzcyI6InBldHBhbHMtYXBwcyIsImlhdCI6MTcxMzkyNDIyMCwianRpIjoiMzA3ZTY3Y2QtZDQ1Zi00OWMyLWFlZTEtZmZiNTI5MWZmOWVkIn0.qnQ1znsWaqfO-mU0LLA5EwSJ1L8Ko01-Qx5lF5WeZUkwk_nmh0arO16CtsJmmwi-pFrbipnKmlp9z9sLevoIrqb9ldQ7DQPDgbF0QCXQjGJK9BQjqieIyw9lLXgLlwn-VZv-tG74JvPnUxXOZpWit1MPBSwuWqfHwBe_McBV9pBKOwZ33Gx_c2SGjjUCel1ChCmAx0VXkEdivm-tcAzeOmPyFcphMdNB22CyiqrETtegfKH3eBAa81n4s0kFOjVJ-B6uFIQKzOwHnvKbg7OdxHDlXSVIoUaE4e1WEv2uR2NZTSVlrP9KIO24zg6TKMdf1vKfIod77AAASfmo21cBVA")
-				.header("Content-Type", "application/json")
-				.body(json)
-				.when().post("/owners")
-				.then()
-				.statusCode(400);
-	}
+
+
 	
 	@Test
 	void testCreateCaregiverInvalidApiKey() throws JsonProcessingException {

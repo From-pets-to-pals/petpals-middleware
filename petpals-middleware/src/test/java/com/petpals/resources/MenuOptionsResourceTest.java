@@ -22,13 +22,13 @@ import static org.hamcrest.Matchers.is;
 
 @QuarkusTest
 class MenuOptionsResourceTest {
-	static List<Specie> specieList = List.of(new Specie(SpeciesEnum.DOG.name()), new Specie(SpeciesEnum.CAT.name()),
-											 new Specie(SpeciesEnum.NAC.name()));
+	static List<Specie> specieList = List.of(new Specie(Short.valueOf("1"), "DOG"),
+			new Specie(Short.valueOf("2"), "CAT"),new Specie(Short.valueOf("3"), "NAC"));
 	
 	static List<Country> countryList = List.of(new Country("FR","France","250"));
-	static List<BreedWithoutSpecie> dogBreeds = List.of(new BreedWithoutSpecie("Husky"));
+	static List<BreedWithoutSpecie> dogBreeds = List.of(new BreedWithoutSpecie(Short.valueOf("144"), "German Shepherd"));
 	
-	static List<BreedWithoutSpecie> catBreeds = List.of(new BreedWithoutSpecie("Siamois"));
+	static List<BreedWithoutSpecie> catBreeds = List.of(new BreedWithoutSpecie(Short.valueOf("356"), "Birman"));
 	
 	static List<BreedWithoutSpecie> nacBreeds = List.of();
 	

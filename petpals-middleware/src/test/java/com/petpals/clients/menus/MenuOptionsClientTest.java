@@ -56,7 +56,7 @@ class MenuOptionsClientTest {
 	
 	@Test
 	void shouldReturnOneSpecieList(){
-		var toReturn = List.of(new Specie(SpeciesEnum.DOG.name()));
+		var toReturn = List.of(new Specie(Short.valueOf("1"), "DOG"));
 		Mockito.when(menuOptionsClient.getSpecies()).thenReturn(toReturn);
 		var res = menuOptionsOut.getSpecies();
 		Assertions.assertEquals(toReturn, res);
@@ -72,7 +72,7 @@ class MenuOptionsClientTest {
 	
 	@Test
 	void shouldReturnOneBreedList(){
-		var toReturn = List.of(new Breed("Husky",new Specie(SpeciesEnum.DOG.name())));
+		var toReturn = List.of(new Breed(Short.valueOf("144"), "German Shepherd",new Specie(Short.valueOf("1"), "DOG")));
 		Mockito.when(menuOptionsClient.getBreeds()).thenReturn(toReturn);
 		var res = menuOptionsOut.getBreeds();
 		Assertions.assertEquals(toReturn, res);
@@ -88,7 +88,7 @@ class MenuOptionsClientTest {
 	
 	@Test
 	void shouldReturnOneDogBreedList(){
-		var toReturn = List.of(new BreedWithoutSpecie("Husky"));
+		var toReturn = List.of(new BreedWithoutSpecie(Short.valueOf("144"), "German Shepherd"));
 		Mockito.when(menuOptionsClient.getDogBreeds()).thenReturn(toReturn);
 		var res = menuOptionsOut.getDogBreeds();
 		Assertions.assertEquals(toReturn, res);
@@ -104,7 +104,7 @@ class MenuOptionsClientTest {
 	
 	@Test
 	void shouldReturnOneCatBreedList(){
-		var toReturn = List.of(new BreedWithoutSpecie("Birman"));
+		var toReturn = List.of(new BreedWithoutSpecie(Short.valueOf("356"), "Birman"));
 		Mockito.when(menuOptionsClient.getCatBreeds()).thenReturn(toReturn);
 		var res = menuOptionsOut.getCatBreeds();
 		Assertions.assertEquals(toReturn, res);
