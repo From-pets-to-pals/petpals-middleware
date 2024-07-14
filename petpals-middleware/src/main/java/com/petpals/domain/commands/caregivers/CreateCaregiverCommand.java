@@ -1,8 +1,8 @@
 package com.petpals.domain.commands.caregivers;
 
 import com.petpals.clients.dto.caregivers.Days;
+import com.petpals.shared.model.dto.Specie;
 import com.petpals.shared.model.enums.PalsFriendsTypes;
-import com.petpals.shared.model.enums.SpeciesEnum;
 
 import java.util.Arrays;
 import java.util.Objects;
@@ -12,6 +12,7 @@ public class CreateCaregiverCommand {
 	private String firstName;
 	private String lastName;
 	private String email;
+	private String password;
 	private String phoneNumber;
 	private String address;
 	
@@ -19,12 +20,12 @@ public class CreateCaregiverCommand {
 	private String zipCode;
 	private String country;
 	private Days[] workingDays;
-	private SpeciesEnum[] palsHandled;
+	private String[] palsHandled;
 	private boolean homeService;
 	private double appointmentDuration;
 	
 	private PalsFriendsTypes caregiverType;
-	private boolean isSubscribed;
+	private boolean subscribed;
 	private double serviceRating;
 	private double priceRating;
 	
@@ -36,12 +37,12 @@ public class CreateCaregiverCommand {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
 		CreateCaregiverCommand that = (CreateCaregiverCommand) o;
-		return homeService == that.homeService && Double.compare(appointmentDuration, that.appointmentDuration) == 0 && isSubscribed == that.isSubscribed && Double.compare(serviceRating, that.serviceRating) == 0 && Double.compare(priceRating, that.priceRating) == 0 && Objects.equals(reference, that.reference) && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName) && Objects.equals(email, that.email) && Objects.equals(phoneNumber, that.phoneNumber) && Objects.equals(address, that.address) && Objects.equals(city, that.city) && Objects.equals(zipCode, that.zipCode) && Objects.equals(country, that.country) && Objects.deepEquals(workingDays, that.workingDays) && Objects.deepEquals(palsHandled, that.palsHandled) && caregiverType == that.caregiverType;
+		return homeService == that.homeService && Double.compare(appointmentDuration, that.appointmentDuration) == 0 && subscribed == that.subscribed && Double.compare(serviceRating, that.serviceRating) == 0 && Double.compare(priceRating, that.priceRating) == 0 && Objects.equals(reference, that.reference) && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName) && Objects.equals(email, that.email) && Objects.equals(phoneNumber, that.phoneNumber) && Objects.equals(address, that.address) && Objects.equals(city, that.city) && Objects.equals(zipCode, that.zipCode) && Objects.equals(country, that.country) && Objects.deepEquals(workingDays, that.workingDays) && Objects.deepEquals(palsHandled, that.palsHandled) && caregiverType == that.caregiverType;
 	}
 	
 	@Override
 	public int hashCode() {
-		return Objects.hash(reference, firstName, lastName, email, phoneNumber, address, city, zipCode, country, Arrays.hashCode(workingDays), Arrays.hashCode(palsHandled), homeService, appointmentDuration, caregiverType, isSubscribed, serviceRating, priceRating);
+		return Objects.hash(reference, firstName, lastName, email, phoneNumber, address, city, zipCode, country, Arrays.hashCode(workingDays), Arrays.hashCode(palsHandled), homeService, appointmentDuration, caregiverType, subscribed, serviceRating, priceRating);
 	}
 	
 	@Override
@@ -61,7 +62,7 @@ public class CreateCaregiverCommand {
 					   ", homeService=" + homeService +
 					   ", appointmentDuration=" + appointmentDuration +
 					   ", caregiverType=" + caregiverType +
-					   ", isSubscribed=" + isSubscribed +
+					   ", subscribed=" + subscribed +
 					   ", serviceRating=" + serviceRating +
 					   ", priceRating=" + priceRating +
 					   '}';
@@ -147,15 +148,15 @@ public class CreateCaregiverCommand {
 		this.workingDays = workingDays;
 	}
 	
-	public SpeciesEnum[] getPalsHandled() {
+	public String[] getPalsHandled() {
 		return palsHandled;
 	}
 	
-	public void setPalsHandled(SpeciesEnum[] palsHandled) {
+	public void setPalsHandled(String[] palsHandled) {
 		this.palsHandled = palsHandled;
 	}
 	
-	public boolean getIsHomeService() {
+	public boolean getHomeService() {
 		return homeService;
 	}
 	
@@ -179,13 +180,10 @@ public class CreateCaregiverCommand {
 		this.caregiverType = caregiverType;
 	}
 	
-	public boolean getIsSubscribed() {
-		return isSubscribed;
+	public boolean getSubscribed() {
+		return subscribed;
 	}
-	
-	public void setIsSubscribed(boolean isSubscribed) {
-		this.isSubscribed = isSubscribed;
-	}
+
 	
 	public double getServiceRating() {
 		return serviceRating;
@@ -201,5 +199,22 @@ public class CreateCaregiverCommand {
 	
 	public void setPriceRating(double priceRating) {
 		this.priceRating = priceRating;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public boolean isHomeService() {
+		return homeService;
+	}
+
+
+	public void setSubscribed(boolean subscribed) {
+		this.subscribed = subscribed;
 	}
 }

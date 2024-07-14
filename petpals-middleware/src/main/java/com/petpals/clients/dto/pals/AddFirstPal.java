@@ -3,7 +3,6 @@ package com.petpals.clients.dto.pals;
 import com.petpals.shared.model.SpeciesConstraint;
 import com.petpals.shared.model.dto.BreedWithoutSpecie;
 import com.petpals.shared.model.dto.Specie;
-import com.petpals.shared.model.enums.SpeciesEnum;
 import jakarta.validation.constraints.*;
 
 import java.util.List;

@@ -37,11 +37,11 @@ class CreateCaregiverResourceTest {
 		createCaregiver.setZipCode("92150");
 		createCaregiver.setCountry("France");
 		createCaregiver.setWorkingDays(new Days[]{});
-		createCaregiver.setPalsHandled(new SpeciesEnum[]{});
+		createCaregiver.setPalsHandled(new String[0]);
 		createCaregiver.setHomeService(false);
 		createCaregiver.setAppointmentDuration(0.5);
 		createCaregiver.setCaregiverType(PalsFriendsTypes.VET);
-		createCaregiver.setIsSubscribed(false);
+		createCaregiver.setSubscribed(false);
 		createCaregiver.setPriceRating(0.0);
 		createCaregiver.setServiceRating(0.0);
 		Mockito.when(saveCaregiversIn.createCaregiver(Mockito.any(CreateCaregiverCommand.class))).thenReturn("test");

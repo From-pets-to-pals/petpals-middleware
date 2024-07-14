@@ -8,6 +8,5 @@ import org.mapstruct.MappingConstants;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.CDI)
 public interface CreateCaregiverCommandMapper {
-	@Mapping(source = "isSubscribed", target = "isSubscribed")
-	CreateCaregiverCommand toDomain(CreateCaregiver caregiver);
+	CreateCaregiverCommand toCommand(CreateCaregiver caregiver);
 }

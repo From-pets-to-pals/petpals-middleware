@@ -10,19 +10,19 @@ import java.util.Objects;
 public record CreateCaregiver(String firstName, String lastName, String email, String phoneNumber, String address,
 							  String city, String zipCode, String country, Days[] workingDays, SpeciesEnum[] palsHandled,
 							  boolean homeService, double appointmentDuration,
-							  PalsFriendsTypes caregiverType, boolean isSubscribed, double serviceRating,
+							  PalsFriendsTypes caregiverType, boolean subscribed, double serviceRating,
 							  double priceRating) {
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
 		CreateCaregiver that = (CreateCaregiver) o;
-		return Double.compare(priceRating, that.priceRating) == 0 && homeService == that.homeService && isSubscribed == that.isSubscribed && Double.compare(serviceRating, that.serviceRating) == 0 && Double.compare(appointmentDuration, that.appointmentDuration) == 0 && Objects.equals(city, that.city) && Objects.equals(email, that.email) && Objects.equals(address, that.address) && Objects.equals(zipCode, that.zipCode) && Objects.equals(country, that.country) && Objects.equals(lastName, that.lastName) && Objects.equals(firstName, that.firstName) && Objects.equals(phoneNumber, that.phoneNumber) && Objects.deepEquals(workingDays, that.workingDays) && Objects.deepEquals(palsHandled, that.palsHandled) && caregiverType == that.caregiverType;
+		return Double.compare(priceRating, that.priceRating) == 0 && homeService == that.homeService && subscribed == that.subscribed && Double.compare(serviceRating, that.serviceRating) == 0 && Double.compare(appointmentDuration, that.appointmentDuration) == 0 && Objects.equals(city, that.city) && Objects.equals(email, that.email) && Objects.equals(address, that.address) && Objects.equals(zipCode, that.zipCode) && Objects.equals(country, that.country) && Objects.equals(lastName, that.lastName) && Objects.equals(firstName, that.firstName) && Objects.equals(phoneNumber, that.phoneNumber) && Objects.deepEquals(workingDays, that.workingDays) && Objects.deepEquals(palsHandled, that.palsHandled) && caregiverType == that.caregiverType;
 	}
 	
 	@Override
 	public int hashCode() {
-		return Objects.hash(firstName, lastName, email, phoneNumber, address, city, zipCode, country, Arrays.hashCode(workingDays), Arrays.hashCode(palsHandled), homeService, appointmentDuration, caregiverType, isSubscribed, serviceRating, priceRating);
+		return Objects.hash(firstName, lastName, email, phoneNumber, address, city, zipCode, country, Arrays.hashCode(workingDays), Arrays.hashCode(palsHandled), homeService, appointmentDuration, caregiverType, subscribed, serviceRating, priceRating);
 	}
 	
 	@Override
@@ -41,9 +41,13 @@ public record CreateCaregiver(String firstName, String lastName, String email, S
 					   ", homeService=" + homeService +
 					   ", appointmentDuration=" + appointmentDuration +
 					   ", caregiverType=" + caregiverType +
-					   ", isSubscribed=" + isSubscribed +
+					   ", subscribed=" + subscribed +
 					   ", serviceRating=" + serviceRating +
 					   ", priceRating=" + priceRating +
 					   '}';
+	}
+
+	public boolean isSubscribed() {
+		return subscribed();
 	}
 }
