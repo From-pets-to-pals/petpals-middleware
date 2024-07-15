@@ -1,9 +1,7 @@
 package com.petpals.application.entrypoints.caregivers;
 
 import com.petpals.application.dto.caregivers.CreateCaregiverRequest;
-import com.petpals.application.dto.responses.CreateCaregiverCommandMapper;
 import com.petpals.application.mappers.caregivers.CreateCaregiverRequestMapper;
-import com.petpals.clients.dto.caregivers.CreateCaregiver;
 import com.petpals.domain.ports.in.SaveCaregiversIn;
 import jakarta.annotation.security.PermitAll;
 import jakarta.ws.rs.Consumes;
