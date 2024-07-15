@@ -6,9 +6,7 @@ import com.petpals.domain.ports.in.CreateOwnerIn;
 import com.petpals.domain.ports.out.CreateOwnerOut;
 import com.petpals.shared.entities.uuid.UUIDFormatter;
 import com.petpals.shared.entities.uuid.UUIDGenerator;
-import com.petpals.shared.model.dto.PalIdentityInformation;
-import com.petpals.shared.model.dto.PalMeasurement;
-import com.petpals.shared.model.dto.PalMedicalInformation;
+import com.petpals.shared.model.dto.*;
 import com.petpals.shared.model.enums.SpeciesEnum;
 import io.quarkus.test.InjectMock;
 import io.quarkus.test.junit.QuarkusTest;
@@ -38,6 +36,7 @@ class CreateOwnerServiceTest {
 	public void setup() {
 		createOwnerCommand = new CreateOwnerCommand(
 				"sa.bennaceur@gmail.com",
+				"A",
 				"Sidou",
 				"OPPO X60",
 				UUIDFormatter.formatUUIDSequence(UUIDGenerator.generateUUID(),true,""),
@@ -60,8 +59,8 @@ class CreateOwnerServiceTest {
 										"Ashe",
 										"2022-04-28",
 										true,
-										SpeciesEnum.DOG,
-										"Husky",
+										new Specie(Short.valueOf("1"), "DOG"),
+										new BreedWithoutSpecie(Short.valueOf("144"), "German Shepherd"),
 										"250261245784512",
 										true)
 						)

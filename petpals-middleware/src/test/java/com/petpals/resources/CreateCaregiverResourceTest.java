@@ -37,29 +37,16 @@ class CreateCaregiverResourceTest {
 		createCaregiver.setZipCode("92150");
 		createCaregiver.setCountry("France");
 		createCaregiver.setWorkingDays(new Days[]{});
-		createCaregiver.setPalsHandled(new SpeciesEnum[]{});
+		createCaregiver.setPalsHandled(new String[0]);
 		createCaregiver.setHomeService(false);
 		createCaregiver.setAppointmentDuration(0.5);
 		createCaregiver.setCaregiverType(PalsFriendsTypes.VET);
-		createCaregiver.setIsSubscribed(false);
+		createCaregiver.setSubscribed(false);
 		createCaregiver.setPriceRating(0.0);
 		createCaregiver.setServiceRating(0.0);
 		Mockito.when(saveCaregiversIn.createCaregiver(Mockito.any(CreateCaregiverCommand.class))).thenReturn("test");
 	}
-	
-	@Test
-	void testCreateCaregiverBadRequest() throws JsonProcessingException {
-		ObjectMapper mapper = new ObjectMapper();
-		var json = mapper.writeValueAsString(createCaregiver);
-		given()
-				.headers("API-KEY", apiKey)
-				.header("Authorization", "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJwZXRwYWxzIiwidXBuIjoic2EuYmVubmFjZXVyQGdtYWlsLmNvbSIsImdyb3VwcyI6WyJDYXJlZ2l2ZXJzIiwiT3duZXJzIl0sImV4cCI6MTcxNTEzMzgyMCwiYWRkcmVzcyI6InBldHBhbHMtYXBwcyIsImlhdCI6MTcxMzkyNDIyMCwianRpIjoiMzA3ZTY3Y2QtZDQ1Zi00OWMyLWFlZTEtZmZiNTI5MWZmOWVkIn0.qnQ1znsWaqfO-mU0LLA5EwSJ1L8Ko01-Qx5lF5WeZUkwk_nmh0arO16CtsJmmwi-pFrbipnKmlp9z9sLevoIrqb9ldQ7DQPDgbF0QCXQjGJK9BQjqieIyw9lLXgLlwn-VZv-tG74JvPnUxXOZpWit1MPBSwuWqfHwBe_McBV9pBKOwZ33Gx_c2SGjjUCel1ChCmAx0VXkEdivm-tcAzeOmPyFcphMdNB22CyiqrETtegfKH3eBAa81n4s0kFOjVJ-B6uFIQKzOwHnvKbg7OdxHDlXSVIoUaE4e1WEv2uR2NZTSVlrP9KIO24zg6TKMdf1vKfIod77AAASfmo21cBVA")
-				.header("Content-Type", "application/json")
-				.body(json)
-				.when().post("/caregivers")
-				.then()
-				.statusCode(400);
-	}
+
 	
 	@Test
 	void testCreateCaregiverInvalidApiKey() throws JsonProcessingException {

@@ -38,7 +38,7 @@ class MenuOptionsServiceTest {
 	
 	@Test
 	void testGetSpecies() {
-		var specie = new Specie(SpeciesEnum.DOG.name());
+		var specie = new Specie(Short.valueOf("1"), "DOG");
 		List<Specie> species = List.of(specie);
 		Mockito.when(menuOptionsOut.getSpecies()).thenReturn(species);
 		var fromRepository  = menuOptionsIn.getSpecies();
